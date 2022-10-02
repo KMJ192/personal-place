@@ -51,7 +51,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rollup-plugin-terser", "virtual:88dc6121811be6f2745e5854a9463286a2128ca9aa6491aff2a7a8c3b8845a23c25c40d1db2e099f63d8319b0cdb19f82673ce20772fc3b64fc8c47953dd4b36#npm:7.0.2"],\
             ["rollup-plugin-typescript2", "virtual:88dc6121811be6f2745e5854a9463286a2128ca9aa6491aff2a7a8c3b8845a23c25c40d1db2e099f63d8319b0cdb19f82673ce20772fc3b64fc8c47953dd4b36#npm:0.34.0"],\
             ["typescript", "patch:typescript@npm%3A4.8.3#~builtin<compat/typescript>::version=4.8.3&hash=a1c5e5"],\
-            ["vite", "virtual:88dc6121811be6f2745e5854a9463286a2128ca9aa6491aff2a7a8c3b8845a23c25c40d1db2e099f63d8319b0cdb19f82673ce20772fc3b64fc8c47953dd4b36#npm:3.1.2"]\
+            ["vite", "virtual:88dc6121811be6f2745e5854a9463286a2128ca9aa6491aff2a7a8c3b8845a23c25c40d1db2e099f63d8319b0cdb19f82673ce20772fc3b64fc8c47953dd4b36#npm:3.1.2"],\
+            ["vite-plugin-wasm-pack", "npm:0.1.12"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -2846,6 +2847,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["color-convert", "npm:1.9.3"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:4.3.0", {\
+          "packageLocation": "./.yarn/cache/ansi-styles-npm-4.3.0-245c7d42c7-513b44c3b2.zip/node_modules/ansi-styles/",\
+          "packageDependencies": [\
+            ["ansi-styles", "npm:4.3.0"],\
+            ["color-convert", "npm:2.0.1"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["aproba", [\
@@ -3066,6 +3075,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["supports-color", "npm:5.5.0"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:4.1.2", {\
+          "packageLocation": "./.yarn/cache/chalk-npm-4.1.2-ba8b67ab80-fe75c9d5c7.zip/node_modules/chalk/",\
+          "packageDependencies": [\
+            ["chalk", "npm:4.1.2"],\
+            ["ansi-styles", "npm:4.3.0"],\
+            ["supports-color", "npm:7.2.0"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["chownr", [\
@@ -3094,6 +3112,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["color-name", "npm:1.1.3"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:2.0.1", {\
+          "packageLocation": "./.yarn/cache/color-convert-npm-2.0.1-79730e935b-79e6bdb9fd.zip/node_modules/color-convert/",\
+          "packageDependencies": [\
+            ["color-convert", "npm:2.0.1"],\
+            ["color-name", "npm:1.1.4"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["color-name", [\
@@ -3101,6 +3127,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/color-name-npm-1.1.3-728b7b5d39-09c5d3e33d.zip/node_modules/color-name/",\
           "packageDependencies": [\
             ["color-name", "npm:1.1.3"]\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["npm:1.1.4", {\
+          "packageLocation": "./.yarn/cache/color-name-npm-1.1.4-025792b0ea-b044585952.zip/node_modules/color-name/",\
+          "packageDependencies": [\
+            ["color-name", "npm:1.1.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4214,6 +4247,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["narrowing", [\
+        ["npm:1.5.0", {\
+          "packageLocation": "./.yarn/cache/narrowing-npm-1.5.0-3f3cdee2cd-dc515cff57.zip/node_modules/narrowing/",\
+          "packageDependencies": [\
+            ["narrowing", "npm:1.5.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["negotiator", [\
         ["npm:0.6.3", {\
           "packageLocation": "./.yarn/cache/negotiator-npm-0.6.3-9d50e36171-b8ffeb1e26.zip/node_modules/negotiator/",\
@@ -4512,7 +4554,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rollup-plugin-terser", "virtual:88dc6121811be6f2745e5854a9463286a2128ca9aa6491aff2a7a8c3b8845a23c25c40d1db2e099f63d8319b0cdb19f82673ce20772fc3b64fc8c47953dd4b36#npm:7.0.2"],\
             ["rollup-plugin-typescript2", "virtual:88dc6121811be6f2745e5854a9463286a2128ca9aa6491aff2a7a8c3b8845a23c25c40d1db2e099f63d8319b0cdb19f82673ce20772fc3b64fc8c47953dd4b36#npm:0.34.0"],\
             ["typescript", "patch:typescript@npm%3A4.8.3#~builtin<compat/typescript>::version=4.8.3&hash=a1c5e5"],\
-            ["vite", "virtual:88dc6121811be6f2745e5854a9463286a2128ca9aa6491aff2a7a8c3b8845a23c25c40d1db2e099f63d8319b0cdb19f82673ce20772fc3b64fc8c47953dd4b36#npm:3.1.2"]\
+            ["vite", "virtual:88dc6121811be6f2745e5854a9463286a2128ca9aa6491aff2a7a8c3b8845a23c25c40d1db2e099f63d8319b0cdb19f82673ce20772fc3b64fc8c47953dd4b36#npm:3.1.2"],\
+            ["vite-plugin-wasm-pack", "npm:0.1.12"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -5142,6 +5185,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "sass",\
             "stylus",\
             "terser"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["vite-plugin-wasm-pack", [\
+        ["npm:0.1.12", {\
+          "packageLocation": "./.yarn/cache/vite-plugin-wasm-pack-npm-0.1.12-489cd99066-78a93049c8.zip/node_modules/vite-plugin-wasm-pack/",\
+          "packageDependencies": [\
+            ["vite-plugin-wasm-pack", "npm:0.1.12"],\
+            ["chalk", "npm:4.1.2"],\
+            ["fs-extra", "npm:10.1.0"],\
+            ["narrowing", "npm:1.5.0"]\
           ],\
           "linkType": "HARD"\
         }]\
