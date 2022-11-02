@@ -1,5 +1,7 @@
-import './App.css';
 import ReactRouter from './Router/ReactRouter';
+
+import './App.css';
+import TestPage from './pages/TestPage';
 
 function App() {
   // import('../wasm-module/pkg').then(async (wasm) => {
@@ -18,7 +20,11 @@ function App() {
         },
       ]}
     >
-      <div>test</div>
+      <ReactRouter.Auth auth='admin'>
+        <ReactRouter.Page path='admin/test'>
+          <TestPage />
+        </ReactRouter.Page>
+      </ReactRouter.Auth>
     </ReactRouter.Container>
   );
 }

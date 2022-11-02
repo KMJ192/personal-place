@@ -1,17 +1,15 @@
-import Container from './Container';
-import Auth from './Auth';
-import Common from './Common';
-import Page from './Page';
-import NotFound from './NotFound';
-
-import type { ContainerType } from './types';
+import Container, { ContainerProps } from './Container';
+import Auth, { AuthProps } from './Auth';
+import Common, { CommonProps } from './Common';
+import Page, { PageProps } from './Page';
+import NotFound, { NotFoundProps } from './NotFound';
 
 const ReactRouter: {
-  Container: (props: ContainerType) => null;
-  Auth: () => Array<JSX.Element>;
-  Common: () => JSX.Element;
-  Page: () => JSX.Element;
-  NotFound: () => JSX.Element;
+  Container: (props: ContainerProps) => JSX.Element;
+  Auth: (props: AuthProps) => JSX.Element;
+  Page: (props: PageProps) => JSX.Element;
+  Common: (props: CommonProps) => JSX.Element;
+  NotFound: (props: NotFoundProps) => JSX.Element;
 } = {
   Container,
   Auth,
@@ -28,9 +26,9 @@ export default ReactRouter;
     },
     {
       auth: 'user'
-    }
+    },
   ]}>
-    <ReactRouter.Auth[0]>
+    <ReactRouter.Auth auth='admin'>
       <ReactRouter.Page path='admin/url1'>
         <AdminPage1 />
       </ReactRouter.Page>
@@ -38,8 +36,8 @@ export default ReactRouter;
         <AdminPage2 />
       </ReactRouter.Page>
       ...
-    </ReactRouter.Auth[0]>
-    <ReactRouter.Auth[1]>
+    </ReactRouter.Auth>
+    <ReactRouter.Auth auth='user'>
       <ReactRouter.Page path='user/url1'>
         <UserPage1 />
       </ReactRouter.Page>
@@ -47,7 +45,7 @@ export default ReactRouter;
         <UserPage2 />
       </ReactRouter.Page>
       ...
-    </ReactRouter.Auth[1]>
+    </ReactRouter.Auth>
     <ReactRouter.Common>
       <ReactRouter.Page path='common/url1'>
         <CommonPage1 />
