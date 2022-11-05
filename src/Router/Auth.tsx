@@ -1,10 +1,12 @@
+import { Route } from 'react-router-dom';
+
 type Props = {
   children?: JSX.Element;
   auth: string;
 };
 
 function Auth({ children, auth }: Props) {
-  return <>{children}</>;
+  return <Route path='test1' element={children} />;
 }
 
 export type { Props as AuthProps };

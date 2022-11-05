@@ -21,10 +21,9 @@ function App() {
       ]}
     >
       <ReactRouter.Auth auth='admin'>
-        <ReactRouter.Page path='admin/test'>
-          <TestPage />
-        </ReactRouter.Page>
+        <TestPage />
       </ReactRouter.Auth>
+      {/* <ReactRouter.Page path='admin/test'></ReactRouter.Page> */}
     </ReactRouter.Container>
   );
 }
