@@ -1580,6 +1580,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^18.11.9":
+  version: 18.11.9
+  resolution: "@types/node@npm:18.11.9"
+  checksum: cc0aae109e9b7adefc32eecb838d6fad931663bb06484b5e9cbbbf74865c721b03d16fd8d74ad90e31dbe093d956a7c2c306ba5429ba0c00f3f7505103d7a496
+  languageName: node
+  linkType: hard
+
 "@types/prop-types@npm:*":
   version: 15.7.5
   resolution: "@types/prop-types@npm:15.7.5"
@@ -3167,9 +3174,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hooks@workspace:.":
+"react-function@workspace:.":
   version: 0.0.0-use.local
-  resolution: "react-hooks@workspace:."
+  resolution: "react-function@workspace:."
   dependencies:
     "@babel/core": ^7.19.1
     "@babel/preset-env": ^7.19.1
@@ -3179,6 +3186,7 @@ __metadata:
     "@rollup/plugin-commonjs": ^22.0.2
     "@rollup/plugin-node-resolve": ^14.1.0
     "@rollup/plugin-strip": ^2.1.0
+    "@types/node": ^18.11.9
     "@types/react": ^18.0.24
     "@types/react-dom": ^18.0.8
     "@vitejs/plugin-react": ^2.1.0
