@@ -1,5 +1,5 @@
 import ReactRouter from './ReactRouter/ReactRouter';
-import type { ReactRouterMapType } from './ReactRouter';
+import type { ReactRouterMapType, PageTypes } from './ReactRouter';
 
 import RootPage from './pages/RootPage';
 import TestPage from './pages/TestPage';
@@ -12,22 +12,22 @@ const routerMap: Array<ReactRouterMapType> = [
   {
     auth: 'common',
     path: '/',
-    element: <RootPage />,
+    page: <RootPage />,
   },
   {
     auth: 'admin',
     path: '/admin/test',
-    element: <TestPage />,
+    page: <TestPage />,
   },
   {
     auth: 'user',
     path: '/user/test1',
-    element: <TestPage2 />,
+    page: <TestPage2 />,
   },
   {
     auth: 'user',
     path: '/user/test2',
-    element: <TestPage3 />,
+    page: <TestPage3 />,
   },
 ];
 
@@ -41,12 +41,12 @@ function App() {
     <ReactRouter
       auth='admin'
       routerMap={routerMap}
-      wrongAccessElement={<div>Wrong Access</div>}
-      notFoundElement={<div>404 Not Found</div>}
-      addElement={(page: JSX.Element) => {
+      wrongAccessPage={<div>Wrong Access</div>}
+      notFoundPage={<div>404 Not Found</div>}
+      addElement={(page: JSX.Element, pageType: PageTypes) => {
         return (
           <div>
-            test <div>{page}</div>
+            {pageType} <div>{page}</div>
           </div>
         );
       }}

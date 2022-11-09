@@ -1,7 +1,9 @@
+type PageTypes = 'wrongAccessPage' | 'notFoundPage' | string;
+
 type ReactRouterMapType = {
   auth: string | 'common';
   path: string;
-  element: JSX.Element;
+  page: JSX.Element;
 };
 
-export type { ReactRouterMapType };
+export type { ReactRouterMapType, PageTypes };

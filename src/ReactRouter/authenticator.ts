@@ -1,16 +1,16 @@
-type Props = {
+type AuthenticatorParams = {
   auth: string;
   pageAuth: string;
   wrongAccessPage: JSX.Element;
   page: JSX.Element;
 };
 
-function Authentication({
+function authenticator({
   auth,
   pageAuth,
   page,
   wrongAccessPage,
-}: Props): [JSX.Element, boolean] {
+}: AuthenticatorParams): [JSX.Element, boolean] {
   if (pageAuth !== 'common' && auth !== pageAuth) {
     return [wrongAccessPage, true];
   }
@@ -18,4 +18,4 @@ function Authentication({
   return [page, false];
 }
 
-export default Authentication;
+export default authenticator;

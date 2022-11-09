@@ -1,40 +1,38 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
-import Authentication from './Authentication';
-import type { ReactRouterMapType } from './types';
+import type { PageTypes, ReactRouterMapType } from './types';
+
+import authenticator from './authenticator';
 
 type Props = {
   auth: string;
   routerMap: Array<ReactRouterMapType>;
-  wrongAccessElement: JSX.Element;
-  notFoundElement: JSX.Element;
-  addElement?: (page: JSX.Element) => JSX.Element;
+  wrongAccessPage: JSX.Element;
+  notFoundPage: JSX.Element;
+  addElement?: (page: JSX.Element, pageType: PageTypes) => JSX.Element;
 };
 
 function ReactRouter({
   auth,
   routerMap,
-  wrongAccessElement,
-  notFoundElement,
+  wrongAccessPage,
+  notFoundPage,
   addElement,
 }: Props) {
   return (
     <BrowserRouter>
       <Routes>
-        {routerMap.map(({ auth: componentAuth, path, element }) => {
-          const authCompo: JSX.Element = (
-            <Authentication
-              auth={auth}
-              componentAuth={componentAuth}
-              wrongAccessElement={wrongAccessElement}
-              element={element}
-            />
-          );
+        {routerMap.map(({ auth: pageAuth, path, page }) => {
+          const [authElement, isWrongAccessPage]: [JSX.Element, boolean] =
+            authenticator({ auth, pageAuth, wrongAccessPage, page });
 
           const render: JSX.Element =
             typeof addElement === 'function'
-              ? addElement(authCompo)
-              : authCompo;
+              ? addElement(
+                  authElement,
+                  isWrongAccessPage ? 'wrongAccess' : pageAuth,
+                )
+              : authElement;
 
           return <Route path={path} element={render} key={path} />;
         })}
@@ -42,8 +40,8 @@ function ReactRouter({
           path='*'
           element={
             typeof addElement === 'function'
-              ? addElement(notFoundElement)
-              : notFoundElement
+              ? addElement(notFoundPage, 'notFound')
+              : notFoundPage
           }
         />
       </Routes>
