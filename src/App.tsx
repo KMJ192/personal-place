@@ -43,6 +43,11 @@ function App() {
       routerMap={routerMap}
       wrongAccess={<div>잘못된 접근입니다.</div>}
       notFound={<div>404 Not Found</div>}
+      pageWrapper={(page: JSX.Element) => (
+        <div>
+          test <div>{page}</div>
+        </div>
+      )}
     />
   );
 }

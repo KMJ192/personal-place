@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 import Authentication from './Authentication';
@@ -8,38 +9,45 @@ type Props = {
   routerMap: Array<ReactRouterMapType>;
   wrongAccess: JSX.Element;
   notFound: JSX.Element;
+  pageWrapper?: (page: JSX.Element) => JSX.Element;
 };
 
 function ReactRouter({
   auth,
   routerMap,
   wrongAccess,
-  notFound: NotFound,
+  notFound,
+  pageWrapper,
 }: Props) {
   return (
     <BrowserRouter>
       <Routes>
         {routerMap.map(({ auth: componentAuth, path, component }) => {
-          return (
-            <Route
-              path={path}
-              element={
-                <Authentication
-                  auth={auth}
-                  componentAuth={componentAuth}
-                  wrongAccess={wrongAccess}
-                  component={component}
-                />
-              }
-              key={path}
+          const authCompo: JSX.Element = (
+            <Authentication
+              auth={auth}
+              componentAuth={componentAuth}
+              wrongAccess={wrongAccess}
+              component={component}
             />
           );
+
+          const render: JSX.Element =
+            typeof pageWrapper === 'function'
+              ? pageWrapper(authCompo)
+              : authCompo;
+
+          return <Route path={path} element={render} key={path} />;
         })}
-        <Route path='*' element={NotFound} />
+        <Route path='*' element={notFound} />
       </Routes>
     </BrowserRouter>
   );
 }
+
+ReactRouter.defaultProps = {
+  pageWrapper: undefined,
+};
 
 export type { Props as ReactRouterProps };
 export default ReactRouter;
