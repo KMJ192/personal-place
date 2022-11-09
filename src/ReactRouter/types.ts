@@ -1,7 +1,7 @@
 type ReactRouterMapType = {
   auth: string | 'common';
   path: string;
-  component: JSX.Element;
+  element: JSX.Element;
 };
 
 export type { ReactRouterMapType };

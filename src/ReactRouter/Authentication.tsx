@@ -1,21 +1,21 @@
 type Props = {
   auth: string;
   componentAuth: string;
-  wrongAccess: JSX.Element;
-  component: JSX.Element;
+  wrongAccessElement: JSX.Element;
+  element: JSX.Element;
 };
 
 function Authentication({
   auth,
   componentAuth,
-  component,
-  wrongAccess,
+  element,
+  wrongAccessElement,
 }: Props) {
   if (componentAuth !== 'common' && auth !== componentAuth) {
-    return wrongAccess;
+    return wrongAccessElement;
   }
 
-  return component;
+  return element;
 }
 
 export default Authentication;

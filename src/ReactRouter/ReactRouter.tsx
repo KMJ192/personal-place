@@ -6,34 +6,34 @@ import type { ReactRouterMapType } from './types';
 type Props = {
   auth: string;
   routerMap: Array<ReactRouterMapType>;
-  wrongAccess: JSX.Element;
-  notFound: JSX.Element;
-  pageWrapper?: (page: JSX.Element) => JSX.Element;
+  wrongAccessElement: JSX.Element;
+  notFoundElement: JSX.Element;
+  addElement?: (page: JSX.Element) => JSX.Element;
 };
 
 function ReactRouter({
   auth,
   routerMap,
-  wrongAccess,
-  notFound,
-  pageWrapper,
+  wrongAccessElement,
+  notFoundElement,
+  addElement,
 }: Props) {
   return (
     <BrowserRouter>
       <Routes>
-        {routerMap.map(({ auth: componentAuth, path, component }) => {
+        {routerMap.map(({ auth: componentAuth, path, element }) => {
           const authCompo: JSX.Element = (
             <Authentication
               auth={auth}
               componentAuth={componentAuth}
-              wrongAccess={wrongAccess}
-              component={component}
+              wrongAccessElement={wrongAccessElement}
+              element={element}
             />
           );
 
           const render: JSX.Element =
-            typeof pageWrapper === 'function'
-              ? pageWrapper(authCompo)
+            typeof addElement === 'function'
+              ? addElement(authCompo)
               : authCompo;
 
           return <Route path={path} element={render} key={path} />;
@@ -41,7 +41,9 @@ function ReactRouter({
         <Route
           path='*'
           element={
-            typeof pageWrapper === 'function' ? pageWrapper(notFound) : notFound
+            typeof addElement === 'function'
+              ? addElement(notFoundElement)
+              : notFoundElement
           }
         />
       </Routes>

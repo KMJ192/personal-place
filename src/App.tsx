@@ -12,22 +12,22 @@ const routerMap: Array<ReactRouterMapType> = [
   {
     auth: 'common',
     path: '/',
-    component: <RootPage />,
+    element: <RootPage />,
   },
   {
     auth: 'admin',
     path: '/admin/test',
-    component: <TestPage />,
+    element: <TestPage />,
   },
   {
     auth: 'user',
     path: '/user/test1',
-    component: <TestPage2 />,
+    element: <TestPage2 />,
   },
   {
     auth: 'user',
     path: '/user/test2',
-    component: <TestPage3 />,
+    element: <TestPage3 />,
   },
 ];
 
@@ -41,9 +41,9 @@ function App() {
     <ReactRouter
       auth='admin'
       routerMap={routerMap}
-      wrongAccess={<div>잘못된 접근입니다.</div>}
-      notFound={<div>404 Not Found</div>}
-      pageWrapper={(page: JSX.Element) => {
+      wrongAccessElement={<div>Wrong Access</div>}
+      notFoundElement={<div>404 Not Found</div>}
+      addElement={(page: JSX.Element) => {
         return (
           <div>
             test <div>{page}</div>
