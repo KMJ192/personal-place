@@ -23,16 +23,16 @@ function ReactRouter({
     <BrowserRouter>
       <Routes>
         {routerMap.map(({ auth: pageAuth, path, page }) => {
-          const [authElement, isWrongAccessPage]: [JSX.Element, boolean] =
+          const [certifiedPage, isWrongAccessPage]: [JSX.Element, boolean] =
             authenticator({ auth, pageAuth, wrongAccessPage, page });
 
           const render: JSX.Element =
             typeof addElement === 'function'
               ? addElement(
-                  authElement,
+                  certifiedPage,
                   isWrongAccessPage ? 'wrongAccess' : pageAuth,
                 )
-              : authElement;
+              : certifiedPage;
 
           return <Route path={path} element={render} key={path} />;
         })}
