@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
 import Authentication from './Authentication';
@@ -39,7 +38,12 @@ function ReactRouter({
 
           return <Route path={path} element={render} key={path} />;
         })}
-        <Route path='*' element={notFound} />
+        <Route
+          path='*'
+          element={
+            typeof pageWrapper === 'function' ? pageWrapper(notFound) : notFound
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
