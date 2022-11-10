@@ -43,6 +43,7 @@ function App() {
       routerMap={routerMap}
       wrongAccessPage={<div>Wrong Access</div>}
       notFoundPage={<div>404 Not Found</div>}
+      erroPage={<div>Sorry... Error,,,</div>}
       addElement={(page: JSX.Element, pageType: PageTypes) => {
         return (
           <div>
