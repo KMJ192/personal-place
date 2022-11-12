@@ -5,6 +5,7 @@ import RootPage from './pages/RootPage';
 import TestPage from './pages/TestPage';
 import TestPage2 from './pages/TestPage2';
 import TestPage3 from './pages/TestPage3';
+import TrieTestPage from './pages/TrieTestPage';
 
 import './App.css';
 
@@ -13,6 +14,11 @@ const routerMap: Array<ReactRouterMapType> = [
     auth: 'common',
     path: '/',
     page: <RootPage />,
+  },
+  {
+    auth: 'common',
+    path: '/test/trie',
+    page: <TrieTestPage />,
   },
   {
     auth: 'admin',
