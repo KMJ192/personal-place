@@ -39,7 +39,11 @@ const value: Array<TrieDataType> = [
 ];
 
 function TrieTestPage() {
-  const trie = useTrie(value, true, false);
+  const trie = useTrie({
+    dictionary: value,
+    isBuildTrie: true,
+    isLetterCase: false,
+  });
 
   const [inputed, setInputed] = useState('');
   const [containList, setContainList] = useState('');

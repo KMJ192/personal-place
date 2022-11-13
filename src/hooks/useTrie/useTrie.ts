@@ -27,14 +27,14 @@ class Trie implements TrieImpl {
 
   private memo: string;
 
-  private letterCase: boolean;
+  private isLetterCase: boolean;
 
-  constructor({ letterCase }: { letterCase: boolean }) {
+  constructor({ isLetterCase }: { isLetterCase: boolean }) {
     this.root = new TrieNode();
 
     this.memo = '';
 
-    this.letterCase = letterCase;
+    this.isLetterCase = isLetterCase;
   }
 
   /**
@@ -67,7 +67,7 @@ class Trie implements TrieImpl {
     let curNode: TrieNode = this.root;
 
     for (let i = 0; i < inputStr.length; i++) {
-      const c = this.letterCase ? inputStr[i] : inputStr[i].toLowerCase();
+      const c = this.isLetterCase ? inputStr[i] : inputStr[i].toLowerCase();
       // 띄어쓰기 무시
       if (c !== ' ') {
         if (!curNode.next[c]) {
@@ -118,7 +118,7 @@ class Trie implements TrieImpl {
     const extract = this.extractStr(prefix);
 
     for (let i = 0; i < extract.length; i++) {
-      const text = this.letterCase ? extract[i] : extract[i].toLowerCase();
+      const text = this.isLetterCase ? extract[i] : extract[i].toLowerCase();
       curNode = curNode.next[text];
       if (curNode === undefined) break;
     }
@@ -147,7 +147,7 @@ class Trie implements TrieImpl {
         for (let i = 0; i < node.info.length; i++) {
           const value = node.info[i];
           const extractLabel = this.extractStr(value.label).join('');
-          const text = this.letterCase
+          const text = this.isLetterCase
             ? extractInputed
             : extractInputed.toLowerCase();
 
@@ -209,19 +209,23 @@ class Trie implements TrieImpl {
   }
 }
 
+type Props = {
+  dictionary: Array<TrieDataType>;
+  isBuildTrie: boolean;
+  isLetterCase: boolean;
+};
+
 /**
- * trie DS Hooks
- * @param dictionary trie 생성 데이터
- * @param isBuildTrie trie 생성 여부
- * @param letterCase 대소문자 구별 여부
- * @returns Trie
+ * trie DS hooks
+ * @param param0
+ * @returns
  */
-function useTrie(
-  dictionary: Array<TrieDataType>,
-  isBuildTrie: boolean = true,
-  letterCase: boolean = true,
-) {
-  const trie = useMemo(() => new Trie({ letterCase }), [letterCase]);
+function useTrie({
+  dictionary,
+  isBuildTrie = true,
+  isLetterCase = true,
+}: Props) {
+  const trie = useMemo(() => new Trie({ isLetterCase }), [isLetterCase]);
 
   useEffect(() => {
     if (isBuildTrie && trie.isDiff(dictionary)) {
