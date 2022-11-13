@@ -217,7 +217,11 @@ type Props = {
 
 /**
  * trie DS hooks
- * @param param0
+ * @param {{
+ *  dictionary,
+ *  isBuildTrie,
+ *  isLetterCase,
+ * }} Props
  * @returns
  */
 function useTrie({
