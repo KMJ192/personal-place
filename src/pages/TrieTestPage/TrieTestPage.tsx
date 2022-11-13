@@ -29,8 +29,12 @@ const value: Array<TrieDataType> = [
     label: 'application',
   },
   {
-    key: 2,
-    label: 'appasdasd',
+    key: 6,
+    label: 'twitter',
+  },
+  {
+    key: 7,
+    label: 'twitch',
   },
 ];
 

@@ -100,10 +100,10 @@ class Trie implements TrieImpl {
 
       if (node.isWord && node.info !== null) {
         for (let i = 0; i < node.info.length; i++) {
-          const p = node.info[i];
-          if (!keys.has(p.key)) {
-            toPrefix.push(p);
-            keys.add(p.key);
+          const value = node.info[i];
+          if (!keys.has(value.key)) {
+            toPrefix.push(value);
+            keys.add(value.key);
           }
         }
       }
@@ -145,15 +145,15 @@ class Trie implements TrieImpl {
       if (node === undefined) return;
       if (node.isWord && node.info !== null) {
         for (let i = 0; i < node.info.length; i++) {
-          const val = node.info[i];
-          const extractLabel = this.extractStr(val.label).join('');
+          const value = node.info[i];
+          const extractLabel = this.extractStr(value.label).join('');
           const text = this.letterCase
             ? extractInputed
             : extractInputed.toLowerCase();
 
-          if (extractLabel.includes(text) && !keys.has(val.key)) {
-            containList.push(val);
-            keys.add(val.key);
+          if (extractLabel.includes(text) && !keys.has(value.key)) {
+            containList.push(value);
+            keys.add(value.key);
           }
         }
       }
