@@ -231,7 +231,7 @@ const Hangul = (() => {
     ];
   }
 
-  function make(s: string) {
+  function extract(s: string) {
     let result = '';
     const sentence = s;
 
@@ -255,7 +255,7 @@ const Hangul = (() => {
   return {
     assemble,
     disassemble,
-    make,
+    extract,
     isHangul,
   };
 })();

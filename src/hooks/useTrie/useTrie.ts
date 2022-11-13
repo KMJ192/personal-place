@@ -48,7 +48,7 @@ class Trie implements TrieImpl {
     for (let i = 0; i < str.length; i++) {
       const c = str[i];
       if (Hangul.isHangul(c)) {
-        const extract = Hangul.make(c);
+        const extract = Hangul.extract(c);
         cur.push(...extract.split(''));
       } else {
         cur.push(c);
@@ -68,6 +68,7 @@ class Trie implements TrieImpl {
 
     for (let i = 0; i < inputStr.length; i++) {
       const c = this.letterCase ? inputStr[i] : inputStr[i].toLowerCase();
+      // 띄어쓰기 무시
       if (c !== ' ') {
         if (!curNode.next[c]) {
           curNode.next[c] = new TrieNode();
@@ -92,11 +93,19 @@ class Trie implements TrieImpl {
   public startPrefixList = (prefix: string): Array<TrieDataType> => {
     let curNode: TrieNode = this.root;
     const toPrefix: Array<TrieDataType> = [];
+    const keys = new Set<string | number>();
 
     const findWords = (node: TrieNode) => {
       if (node === undefined) return;
+
       if (node.isWord && node.info !== null) {
-        toPrefix.push(...node.info);
+        for (let i = 0; i < node.info.length; i++) {
+          const p = node.info[i];
+          if (!keys.has(p.key)) {
+            toPrefix.push(p);
+            keys.add(p.key);
+          }
+        }
       }
 
       const nextArr: Array<TrieNode> = Object.values(node.next);
@@ -130,8 +139,9 @@ class Trie implements TrieImpl {
     if (!inputStr || inputStr.length === 0) return [];
     const containList: Array<TrieDataType> = [];
     const extractInputed = this.extractStr(inputStr).join('');
+    const keys = new Set<string | number>();
 
-    const recursion = (node: TrieNode) => {
+    const findWords = (node: TrieNode) => {
       if (node === undefined) return;
       if (node.isWord && node.info !== null) {
         for (let i = 0; i < node.info.length; i++) {
@@ -140,18 +150,20 @@ class Trie implements TrieImpl {
           const text = this.letterCase
             ? extractInputed
             : extractInputed.toLowerCase();
-          if (extractLabel.includes(text)) {
+
+          if (extractLabel.includes(text) && !keys.has(val.key)) {
             containList.push(val);
+            keys.add(val.key);
           }
         }
       }
       const nextArr = Object.values(node.next);
       for (let i = 0; i < nextArr.length; i++) {
-        recursion(nextArr[i]);
+        findWords(nextArr[i]);
       }
     };
 
-    recursion(this.root);
+    findWords(this.root);
 
     return containList;
   };
@@ -192,8 +204,8 @@ class Trie implements TrieImpl {
   /**
    * 생성된 trie 객체 출력
    */
-  get makedTrie(): TrieNode {
-    return this.root;
+  get makedTrie() {
+    return this;
   }
 }
 
@@ -216,7 +228,7 @@ function useTrie(
       trie.initialize();
       for (let i = 0; i < dictionary.length; i++) {
         const val = dictionary[i];
-        const extract = Hangul.make(val.label);
+        const extract = Hangul.extract(val.label);
         trie.insert(extract, val);
       }
     }

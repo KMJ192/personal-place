@@ -3,7 +3,7 @@ import { useState } from 'react';
 import type { TrieDataType } from '@src/hooks/useTrie/types';
 import useTrie from '@src/hooks/useTrie';
 
-const value = [
+const value: Array<TrieDataType> = [
   {
     key: 0,
     label: '한글',
@@ -28,13 +28,18 @@ const value = [
     key: 5,
     label: 'application',
   },
+  {
+    key: 2,
+    label: 'appasdasd',
+  },
 ];
 
 function TrieTestPage() {
   const trie = useTrie(value, true, false);
 
   const [inputed, setInputed] = useState('');
-  const [result, setResult] = useState('');
+  const [containList, setContainList] = useState('');
+  const [prefixList, setPrefixList] = useState('');
 
   return (
     <div
@@ -51,12 +56,19 @@ function TrieTestPage() {
           value={inputed}
           onChange={(e) => {
             setInputed(e.target.value);
-            const result = trie.containList(e.target.value);
+            const contain = trie.containList(e.target.value);
             let cur = '';
-            for (let i = 0; i < result.length; i++) {
-              cur = i === 0 ? result[i].label : `${cur}, ${result[i].label}`;
+            for (let i = 0; i < contain.length; i++) {
+              cur = i === 0 ? contain[i].label : `${cur}, ${contain[i].label}`;
             }
-            setResult(cur);
+            setContainList(cur);
+
+            const prefix = trie.startPrefixList(e.target.value);
+            cur = '';
+            for (let i = 0; i < prefix.length; i++) {
+              cur = i === 0 ? prefix[i].label : `${cur}, ${prefix[i].label}`;
+            }
+            setPrefixList(cur);
           }}
         />
       </div>
@@ -69,11 +81,12 @@ function TrieTestPage() {
           width: '140px',
         }}
       >
-        {value.map((data) => (
-          <div>{data.label}</div>
+        {value.map((data, key) => (
+          <div key={key}>{data.label}</div>
         ))}
       </div>
-      <div>자동완성 결과 : {result}</div>
+      <div>접두어 : {prefixList}</div>
+      <div>포함 : {containList}</div>
     </div>
   );
 }
