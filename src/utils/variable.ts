@@ -8,7 +8,7 @@ function deepClone(value: any) {
 function objParser() {
   let result = {};
 
-  function makeOneDepth(
+  function makeOneDepthOperator(
     obj: { [key: string]: any } | string,
     curString: string,
     splitStr: string,
@@ -22,18 +22,23 @@ function objParser() {
     }
     const next = Object.keys(obj);
     for (let i = 0; i < next.length; i++) {
+      let cur = '';
       if (curString === '') {
-        makeOneDepth(obj[next[i]], `${next[i]}`, splitStr);
+        cur = `${next[i]}`;
       } else {
-        makeOneDepth(
-          obj[next[i]],
-          `${curString}${splitStr}${next[i]}`,
-          splitStr,
-        );
+        cur = `${curString}${splitStr}${next[i]}`;
       }
+      makeOneDepthOperator(obj[next[i]], cur, splitStr);
     }
 
     return result;
+  }
+
+  function makeOneDepth(
+    obj: { [key: string]: any } | string,
+    splitStr: string,
+  ) {
+    return makeOneDepthOperator(obj, '', splitStr);
   }
 
   return {
