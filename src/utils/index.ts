@@ -1,2 +1,2 @@
 export { default as Hangul } from './hangul';
-export { deepClone } from './variable';
+export { deepClone, objParser } from './variable';
