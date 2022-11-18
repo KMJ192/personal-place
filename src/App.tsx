@@ -38,10 +38,16 @@ const routerMap: Array<ReactRouterMapType> = [
 ];
 
 function App() {
-  // import('../wasm-module/pkg').then(async (wasm) => {
-  //   await wasm.default();
-  //   wasm.console();
-  // });
+  import('../wasm-module/pkg').then(async (wasm) => {
+    await wasm.default();
+    // wasm.console();
+    const d = JSON.stringify({
+      test1: 'test1',
+      test2: 'test2',
+    });
+    // console.log(d);
+    wasm.get_data(d);
+  });
 
   return (
     <ReactRouter
