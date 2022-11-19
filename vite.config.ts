@@ -9,6 +9,7 @@ const config = ({ mode }) => {
     resolve: {
       alias: {
         '@src': path.resolve(__dirname, './src'),
+        '@wasm': path.resolve(__dirname, './wasm-module'),
       },
     },
     plugins: [react(), wasmPack('./wasm-module')],

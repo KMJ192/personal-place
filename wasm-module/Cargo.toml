@@ -19,5 +19,10 @@ version = "0.3"
 [dependencies.web-sys]
 version = "0.3.60"
 features = [
-  'console'
+  'console',
+  'Window',
+  'Document',
+  'Element',
+  'HtmlCanvasElement',
+  'CanvasRenderingContext2d',
 ]
