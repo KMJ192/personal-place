@@ -1,7 +1,11 @@
-type PageTypes = 'wrongAccessPage' | 'notFoundPage' | string;
+type PageTypes =
+  | 'wrongAccessPage'
+  | 'notFoundPage'
+  | string
+  | ReadonlyArray<string>;
 
 type ReactRouterMapType = {
-  auth: string | 'common';
+  auth: string | ReadonlyArray<string> | 'common';
   path: string;
   page: JSX.Element;
 };

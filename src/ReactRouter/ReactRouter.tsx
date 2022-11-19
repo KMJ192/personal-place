@@ -10,8 +10,8 @@ type Props = {
   routerMap: Array<ReactRouterMapType>;
   wrongAccessPage: JSX.Element;
   notFoundPage: JSX.Element;
-  erroPage: JSX.Element;
-  addElement?: (page: JSX.Element, pageType: PageTypes) => JSX.Element;
+  errorPage: JSX.Element;
+  addedElement?: (page: JSX.Element, pageType: PageTypes) => JSX.Element;
 };
 
 function ReactRouter({
@@ -19,35 +19,29 @@ function ReactRouter({
   routerMap,
   wrongAccessPage,
   notFoundPage,
-  erroPage,
-  addElement,
+  errorPage,
+  addedElement = (page: JSX.Element) => page,
 }: Props) {
   return (
-    <ErrorBoundary fallback={erroPage}>
+    <ErrorBoundary fallback={errorPage}>
       <BrowserRouter>
         <Routes>
           {routerMap.map(({ auth: pageAuth, path, page }) => {
-            const [certifiedPage, isWrongAccessPage]: [JSX.Element, boolean] =
-              authenticator({ auth, pageAuth, wrongAccessPage, page });
+            const [certifiedPage, cert]: [JSX.Element, 0 | 1] = authenticator({
+              auth,
+              pageAuth,
+              wrongAccessPage,
+              page,
+            });
 
-            const render: JSX.Element =
-              typeof addElement === 'function'
-                ? addElement(
-                    certifiedPage,
-                    isWrongAccessPage ? 'wrongAccess' : pageAuth,
-                  )
-                : certifiedPage;
+            const render: JSX.Element = addedElement(
+              certifiedPage,
+              cert === 0 ? 'wrongAccess' : pageAuth,
+            );
 
             return <Route path={path} element={render} key={path} />;
           })}
-          <Route
-            path='*'
-            element={
-              typeof addElement === 'function'
-                ? addElement(notFoundPage, 'notFound')
-                : notFoundPage
-            }
-          />
+          <Route path='*' element={addedElement(notFoundPage, 'notFound')} />
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>
@@ -55,7 +49,7 @@ function ReactRouter({
 }
 
 ReactRouter.defaultProps = {
-  pageWrapper: undefined,
+  addedElement: (page: JSX.Element) => page,
 };
 
 export type { Props as ReactRouterProps };
