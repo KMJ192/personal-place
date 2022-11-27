@@ -45,8 +45,7 @@ const routerMap: Array<ReactRouterMapType> = [
 
 function App() {
   // import('@wasm/pkg').then(async (wasm) => {
-  //   await wasm.default();
-  //   wasm.console();
+  //   (await wasm.default()).console();
   // });
   return (
     <ReactRouter
