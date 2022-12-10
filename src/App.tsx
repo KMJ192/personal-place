@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import ReactRouter from './ReactRouter/ReactRouter';
 import type { ReactRouterMapType, PageTypes } from './ReactRouter';
 
@@ -7,6 +9,7 @@ import TestPage2 from './pages/TestPage2';
 import TestPage3 from './pages/TestPage3';
 import TrieTestPage from './pages/TrieTestPage';
 import PieChartPage from './pages/PieChartPage/PieChartPage';
+import VirtualScrollTestPage from './pages/VirtualScrollTestPage/VirtualScrollTestPage';
 
 import './App.css';
 
@@ -41,6 +44,11 @@ const routerMap: Array<ReactRouterMapType> = [
     path: '/chart/pie-chart',
     page: <PieChartPage />,
   },
+  {
+    auth: 'common',
+    path: '/test/virtual-scroll',
+    page: <VirtualScrollTestPage />,
+  },
 ];
 
 function App() {
@@ -62,7 +70,21 @@ function App() {
           </div>
         );
       }}
-    />
+    >
+      <>
+        {routerMap.map(({ path }, idx) => (
+          <Link
+            key={idx}
+            style={{
+              marginRight: '2px',
+            }}
+            to={path}
+          >
+            <button>{path}</button>
+          </Link>
+        ))}
+      </>
+    </ReactRouter>
   );
 }
 

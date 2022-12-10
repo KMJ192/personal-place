@@ -11,6 +11,7 @@ type Props = {
   wrongAccessPage: JSX.Element;
   notFoundPage: JSX.Element;
   errorPage: JSX.Element;
+  children?: JSX.Element;
   addedElement?: (page: JSX.Element, pageType: PageTypes) => JSX.Element;
 };
 
@@ -20,6 +21,7 @@ function ReactRouter({
   wrongAccessPage,
   notFoundPage,
   errorPage,
+  children,
   addedElement = (page: JSX.Element) => page,
 }: Props) {
   return (
@@ -43,6 +45,7 @@ function ReactRouter({
           })}
           <Route path='*' element={addedElement(notFoundPage, 'notFound')} />
         </Routes>
+        {children}
       </BrowserRouter>
     </ErrorBoundary>
   );
