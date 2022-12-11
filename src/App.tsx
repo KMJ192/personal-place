@@ -10,6 +10,7 @@ import TestPage3 from './pages/TestPage3';
 import TrieTestPage from './pages/TrieTestPage';
 import PieChartPage from './pages/PieChartPage/PieChartPage';
 import VirtualScrollTestPage from './pages/VirtualScrollTestPage/VirtualScrollTestPage';
+import InfinityScrollTestPage from './pages/InfinityScrollTestPage/InfinityScrollTestPage';
 
 import './App.css';
 
@@ -48,6 +49,11 @@ const routerMap: Array<ReactRouterMapType> = [
     auth: 'common',
     path: '/test/virtual-scroll',
     page: <VirtualScrollTestPage />,
+  },
+  {
+    auth: 'common',
+    path: '/test/infinity-scroll',
+    page: <InfinityScrollTestPage />,
   },
 ];
 
