@@ -6,13 +6,20 @@ type OberverHooksType = {
   entry: IntersectionObserverEntry;
 };
 
+type Options = {
+  isObserving: boolean;
+};
+
 function useIntersectionObserver(
   elementRef: RefObject<Element>,
   { threshold = 0, root = null, rootMargin = '0%' }: Props,
+  { isObserving = true }: Options,
 ): Partial<OberverHooksType> {
   const [entry, setEntry] = useState<IntersectionObserverEntry>();
 
-  const updateEntry: IntersectionObserverCallback = (entries: Array<IntersectionObserverEntry>) => {
+  const updateEntry: IntersectionObserverCallback = (
+    entries: Array<IntersectionObserverEntry>,
+  ) => {
     setEntry(entries[0]);
   };
 
@@ -26,12 +33,16 @@ function useIntersectionObserver(
       rootMargin,
     });
 
-    observer.observe(node);
+    if (isObserving) {
+      observer.observe(node);
+    } else {
+      observer.unobserve(node);
+    }
 
     return () => {
       observer.disconnect();
     };
-  }, [elementRef?.current, threshold, root, rootMargin]);
+  }, [elementRef?.current, threshold, root, rootMargin, isObserving]);
 
   return {
     entry,
