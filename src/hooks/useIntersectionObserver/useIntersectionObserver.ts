@@ -13,7 +13,7 @@ type Options = {
 function useIntersectionObserver(
   elementRef: RefObject<Element>,
   { threshold = 0, root = null, rootMargin = '0%' }: Props,
-  { isObserving = true }: Options,
+  { isObserving = true }: Partial<Options>,
 ): Partial<OberverHooksType> {
   const [entry, setEntry] = useState<IntersectionObserverEntry>();
 

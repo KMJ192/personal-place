@@ -1,28 +1,51 @@
+import { useEffect, useRef, useState } from 'react';
+
 import useIntersectionObserver from '@src/hooks/useIntersectionObserver';
-import { useEffect, useRef } from 'react';
+import useThrottle from '@src/hooks/useThrottle/useThrottle';
 
 type Props = {
   children: JSX.Element;
   loading: boolean;
+  throttle: number;
   onLast: () => void;
   className?: string;
 };
 
-function InfinityScroll({ children, loading, onLast, className }: Props) {
-  console.log('loading', loading);
+function InfinityScroll({
+  children,
+  loading,
+  throttle,
+  onLast,
+  className,
+}: Props) {
+  const pending = useRef<boolean>(loading);
+  const mount = useRef<boolean>(false);
   const curRef = useRef<HTMLDivElement>(null);
 
-  const { entry } = useIntersectionObserver(
-    curRef,
-    {},
-    { isObserving: loading ? false : true },
+  const { entry } = useIntersectionObserver(curRef, {}, {});
+
+  const next = useThrottle(
+    onLast,
+    (() => {
+      if (!mount.current) {
+        mount.current = true;
+        return 0;
+      }
+      return throttle;
+    })(),
   );
 
   useEffect(() => {
     if (entry?.isIntersecting) {
-      onLast();
+      next();
     }
   }, [entry]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      pending.current = loading;
+    }, 50);
+  }, [loading]);
 
   return (
     <div
