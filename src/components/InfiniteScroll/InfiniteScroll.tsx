@@ -1,63 +1,43 @@
-import { useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
 
-import useIntersectionObserver from '@src/hooks/useIntersectionObserver';
-import useThrottle from '@src/hooks/useThrottle/useThrottle';
+import { useIntersectionObserver } from '@src/hooks';
+import useRequestAnimationFrame from '@src/hooks/useRequestAnimationFrame/useRequestAnimationFrame';
 
 type Props = {
   children: JSX.Element;
-  loading: boolean;
-  throttle: number;
-  onLast: () => void;
+  onLoad: () => void;
   className?: string;
 };
 
-function InfinityScroll({
-  children,
-  loading,
-  throttle,
-  onLast,
-  className,
-}: Props) {
-  const pending = useRef<boolean>(loading);
-  const mount = useRef<boolean>(false);
-  const curRef = useRef<HTMLDivElement>(null);
+const InfiniteScroll = forwardRef<HTMLDivElement, Props>(
+  ({ children, onLoad, className }: Props, ref) => {
+    const isFirst = useRef<boolean>(true);
+    const curRef = useRef<HTMLDivElement>(null);
 
-  const { entry } = useIntersectionObserver(curRef, {}, {});
+    const { entry } = useIntersectionObserver(curRef, {}, {});
 
-  const next = useThrottle(
-    onLast,
-    (() => {
-      if (!mount.current) {
-        mount.current = true;
-        return 0;
+    const next = useRequestAnimationFrame(onLoad);
+
+    useEffect(() => {
+      if (entry?.isIntersecting) {
+        isFirst.current = false;
+        next();
       }
-      return throttle;
-    })(),
-  );
+    }, [entry]);
 
-  useEffect(() => {
-    if (entry?.isIntersecting) {
-      next();
-    }
-  }, [entry]);
+    return (
+      <div
+        className={className}
+        style={{
+          overflowY: 'scroll',
+        }}
+        ref={ref}
+      >
+        {children}
+        <div ref={curRef}></div>
+      </div>
+    );
+  },
+);
 
-  useEffect(() => {
-    setTimeout(() => {
-      pending.current = loading;
-    }, 50);
-  }, [loading]);
-
-  return (
-    <div
-      className={className}
-      style={{
-        overflowY: 'scroll',
-      }}
-    >
-      {children}
-      <div ref={curRef}></div>
-    </div>
-  );
-}
-
-export default InfinityScroll;
+export default InfiniteScroll;

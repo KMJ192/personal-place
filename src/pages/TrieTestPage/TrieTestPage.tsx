@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import type { TrieDataType } from '@src/hooks/useTrie/types';
-import useTrie from '@src/hooks/useTrie';
+import { useTrie } from '@src/hooks';
 
 const value: Array<TrieDataType> = [
   {
