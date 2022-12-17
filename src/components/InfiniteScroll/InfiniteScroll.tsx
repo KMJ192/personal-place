@@ -11,7 +11,6 @@ type Props = {
 
 const InfiniteScroll = forwardRef<HTMLDivElement, Props>(
   ({ children, onLoad, className }: Props, ref) => {
-    const isFirst = useRef<boolean>(true);
     const curRef = useRef<HTMLDivElement>(null);
 
     const { entry } = useIntersectionObserver(curRef, {}, {});
@@ -20,7 +19,6 @@ const InfiniteScroll = forwardRef<HTMLDivElement, Props>(
 
     useEffect(() => {
       if (entry?.isIntersecting) {
-        isFirst.current = false;
         next();
       }
     }, [entry]);
