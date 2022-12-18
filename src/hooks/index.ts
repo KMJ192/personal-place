@@ -6,3 +6,4 @@ export { default as useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffec
 export { default as useThrottle } from './useThrottle/useThrottle';
 export { default as useTimeout } from './useTimeout/useTimeout';
 export { default as useTrie } from './useTrie/useTrie';
+export { default as useRequestAnimationFrame } from './useRequestAnimationFrame/useRequestAnimationFrame';
