@@ -1,32 +1,41 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef, RefObject } from 'react';
+import {
+  useRequestAnimationFrame,
+  useIsomorphicLayoutEffect,
+} from '@src/hooks';
 
 type Props = {
-  id: string;
   children: JSX.Element;
+  rowClassName: string;
+  className?: string;
 };
 
-function VirtualScroll({ id, children }: Props) {
-  const [scrollTop, setScrollTop] = useState<number>(0);
-
-  const handleScroll = (e: Event) => {
-    requestAnimationFrame(() => {
-      const node = e.target as HTMLElement;
-      setScrollTop(node.scrollTop);
+const VirtualScroll = forwardRef<HTMLDivElement, Props>(
+  ({ children, rowClassName, className }, ref) => {
+    const rm = useRequestAnimationFrame(() => {
+      const row = document.getElementsByClassName(rowClassName);
+      const container = (ref as RefObject<HTMLDivElement>).current;
+      if (row.length > 0 && container) {
+        const bbox = row[0].getBoundingClientRect();
+      }
     });
-  };
 
-  useEffect(() => {
-    const container = document.getElementById(id);
-    if (container) {
-      container.addEventListener('scroll', handleScroll);
-      return () => {
-        container.removeEventListener('scroll', handleScroll);
-      };
-    }
-    return () => {};
-  }, []);
+    useIsomorphicLayoutEffect(() => {
+      rm();
+    }, []);
 
-  return children;
-}
+    return (
+      <div
+        className={className}
+        ref={ref}
+        style={{
+          overflowY: 'scroll',
+        }}
+      >
+        {children}
+      </div>
+    );
+  },
+);
 
 export default VirtualScroll;
