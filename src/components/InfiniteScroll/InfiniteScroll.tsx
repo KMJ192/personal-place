@@ -1,7 +1,6 @@
 import { forwardRef, useEffect, useRef } from 'react';
 
-import { useIntersectionObserver } from '@src/hooks';
-import useRequestAnimationFrame from '@src/hooks/useRequestAnimationFrame/useRequestAnimationFrame';
+import { useIntersectionObserver, useRequestAnimationFrame } from '@src/hooks';
 
 type Props = {
   children: JSX.Element;
