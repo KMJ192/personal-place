@@ -1,0 +1,17 @@
+.virtual-scroll {
+  position: relative;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll {
+    position: absolute;
+    right: 0;
+    width: 6px;
+    height: 10px;
+    background-color: aqua;
+    border-radius: 2px;
+  }
+}
