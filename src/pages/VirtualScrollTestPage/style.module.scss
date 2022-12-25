@@ -1,20 +1,9 @@
 .list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
   height: 700px;
-  padding: 8px;
-  margin-top: 2px;
   outline: 1px solid skyblue;
+  margin-top: 2px;
   .row {
-    // width: 100px;
-    // height: 100px;
     padding: 32px;
-    // display: grid;
-    // aspect-ratio: 1;
-    // place-content: center;
     outline: 1px solid skyblue;
-    // margin-top: 10px;
   }
 }

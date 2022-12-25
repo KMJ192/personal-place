@@ -13,6 +13,7 @@ import VirtualScrollTestPage from './pages/VirtualScrollTestPage/VirtualScrollTe
 import InfinityScrollTestPage from './pages/InfinityScrollTestPage/InfinityScrollTestPage';
 
 import './App.css';
+import ReactWindowTestPage from './pages/ReactWindowTestPage/ReactWindowTestPage';
 
 const routerMap: Array<ReactRouterMapType> = [
   {
@@ -54,6 +55,11 @@ const routerMap: Array<ReactRouterMapType> = [
     auth: 'common',
     path: '/test/infinity-scroll',
     page: <InfinityScrollTestPage />,
+  },
+  {
+    auth: 'common',
+    path: '/test/react-window-test',
+    page: <ReactWindowTestPage />,
   },
 ];
 
