@@ -1,11 +1,4 @@
-import {
-  forwardRef,
-  RefObject,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { forwardRef, RefObject, useEffect, useRef, useState } from 'react';
 
 import type { Properties as CSSType } from 'csstype';
 
@@ -62,12 +55,12 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
         height: 0,
       },
     });
-    const [listRen, setListRen] = useState(itemCount > 0 ? 1 : 0);
+
     const [scrollTop, setScrollTop] = useState(0);
-    const [edgeIdx, setEdgeIdx] = useState({
-      first: 0,
-      last: 0,
-    });
+    const [arr, setArr] = useState<Array<number>>(
+      itemCount > 0 ? Array.from({ length: 1 }, (_, idx) => idx) : [],
+    );
+    const [test, setTest] = useState(0);
 
     const calculationSize = useRequestAnimationFrame(() => {
       const items = document.getElementsByClassName(itemClassName);
@@ -94,25 +87,58 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
           },
         });
         const listLen = Math.ceil(containerHeight / itemHeight);
-        setListRen(listLen);
+        const newArr = Array.from({ length: listLen }, (_, idx) => idx);
+
+        setArr(newArr);
         maxLen.current = listLen + 1;
+
+        setTest(itemHeight);
       }
     });
 
     const handleScroll = (e: Event) => {
       const container = e.target as HTMLDivElement;
-
-      setScrollTop(container.scrollTop);
-      if (elementSize.item.height - scrollTop > 0) {
-        console.log('양수', elementSize.item.height - scrollTop);
-        if (listRen !== maxLen.current) {
-          setListRen(maxLen.current + 1);
-        }
+      if (container.scrollTop >= scrollTop) {
+        console.log('down', test, test - container.scrollTop);
       } else {
-        console.log('음수', elementSize.item.height - scrollTop);
-        if (listRen !== maxLen.current) {
-          setListRen(maxLen.current - 1);
-        }
+        console.log('up', test, test - container.scrollTop);
+      }
+      setScrollTop(container.scrollTop);
+      if (elementSize.item.height - scrollTop >= 0) {
+        // if (arr.length < maxLen.current) {
+        //   console.log(
+        //     '양수',
+        //     elementSize.item.height * test - container.scrollTop,
+        //     test,
+        //   );
+        //   setArr((arr) => {
+        //     const newArr = Array.from(
+        //       { length: arr.length + 1 },
+        //       (_, idx) => idx,
+        //     );
+        //     return newArr;
+        //   });
+        //   if (test - 1 > 1) {
+        //     setTest(test - 1);
+        //   }
+        // }
+      } else {
+        // if (arr.length === maxLen.current) {
+        //   console.log(
+        //     '음수',
+        //     elementSize.item.height * test - container.scrollTop,
+        //     test,
+        //   );
+        //   setTest(test + 1);
+        //   maxLen.current -= 1;
+        //   setArr((arr) => {
+        //     const newArr = Array.from(
+        //       { length: arr.length - 1 },
+        //       (_, idx) => idx,
+        //     );
+        //     return newArr;
+        //   });
+        // }
       }
     };
 
@@ -129,7 +155,7 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
         };
       }
       return () => {};
-    }, [elementSize, listRen, scrollTop]);
+    }, [elementSize, scrollTop]);
 
     return (
       <div
@@ -139,29 +165,29 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
         style={{
           ...style,
           position: 'relative',
-          overflow: 'scroll',
+          overflowY: 'scroll',
           display: 'block',
         }}
       >
         <div
           ref={itemWrapperRef}
           style={{
-            width: `${elementSize.itemWrapper.width}px`,
+            width: '100%', // `${elementSize.itemWrapper.width}px`,
             height: `${elementSize.itemWrapper.height}px`,
           }}
         >
-          {Array.from({ length: listRen }, () => 0).map((_, idx) => {
+          {arr.map((count, idx) => {
             return (
               <div
                 key={idx}
                 style={{
                   position: 'absolute',
                   width: '100%',
-                  top: `${elementSize.item.height * idx}px`,
+                  top: `${elementSize.item.height * count}px`,
                 }}
               >
                 {children({
-                  index: idx,
+                  index: count,
                   data,
                   style: itemStyle,
                   className: itemClassName,
