@@ -1,4 +1,11 @@
-import { forwardRef, RefObject, useEffect, useRef, useState } from 'react';
+import {
+  forwardRef,
+  RefObject,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import type { Properties as CSSType } from 'csstype';
 
@@ -40,8 +47,17 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
     ref,
   ) => {
     const itemWrapperRef = useRef<HTMLDivElement | null>(null);
-    const listLen = useRef<number>(0);
+    // const arr = useRef<Array<number>>(
+    //   itemCount > 0 ? Array.from({ length: 1 }, (_, idx) => idx) : [],
+    // );
+    // const listLen = useRef<number>(0);
+    // const count = useRef<number>(0);
+    const [arr, setArr] = useState(
+      itemCount > 0 ? Array.from({ length: 1 }, (_, idx) => idx) : [],
+    );
+    const [listLen, setListLen] = useState(0);
     const [count, setCount] = useState(0);
+    const [scrollTop, setScrollTop] = useState(0);
     const [elementSize, setElementSize] = useState({
       container: {
         width: 0,
@@ -56,11 +72,6 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
         height: 0,
       },
     });
-
-    const [scrollTop, setScrollTop] = useState(0);
-    const [arr, setArr] = useState<Array<number>>(
-      itemCount > 0 ? Array.from({ length: 1 }, (_, idx) => idx) : [],
-    );
 
     const calculationSize = useRequestAnimationFrame(() => {
       const items = document.getElementsByClassName(itemClassName);
@@ -86,8 +97,10 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
             height: itemHeight,
           },
         });
-        listLen.current = Math.ceil(containerHeight / itemHeight);
-        setArr(Array.from({ length: listLen.current + 2 }, (_, idx) => idx));
+        const lLen = Math.ceil(containerHeight / itemHeight);
+        setListLen(lLen);
+        const newArr = Array.from({ length: lLen + 2 }, (_, idx) => idx);
+        setArr(newArr);
       }
     });
 
@@ -97,46 +110,48 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
         const next =
           elementSize.item.height - scrollTop + count * elementSize.item.height;
         if (next <= 0) {
-          setArr(
-            Array.from(
-              { length: listLen.current + 2 },
-              (_, idx) => idx + count,
-            ),
+          const newArr = Array.from(
+            { length: listLen + 2 },
+            (_, idx) => idx + count,
           );
-          setCount(count + 1);
+          setArr(newArr);
+          setCount((count) => count + 1);
         }
       } else {
         const prev =
           elementSize.item.height - scrollTop + count * elementSize.item.height;
         if (prev >= elementSize.item.height) {
-          setArr(
-            Array.from(
-              { length: listLen.current + 2 },
-              (_, idx) => arr[idx] - 1,
-            ),
+          const newArr = Array.from(
+            { length: listLen + 2 },
+            (_, idx) => arr[idx] - 1,
           );
+          setArr(newArr);
           if (0 <= count) {
-            setCount(count - 1);
+            setCount((count) => count - 1);
           }
         }
       }
-      setScrollTop(container.scrollTop);
+      setScrollTop(() => container.scrollTop);
     };
 
     useIsomorphicLayoutEffect(() => {
       calculationSize();
     }, []);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
       const container = (ref as RefObject<HTMLDivElement>).current;
       if (container) {
-        container.addEventListener('scroll', handleScroll);
+        container.addEventListener('scroll', handleScroll, {
+          capture: false,
+        });
         return () => {
-          container.removeEventListener('scroll', handleScroll);
+          container.removeEventListener('scroll', handleScroll, {
+            capture: false,
+          });
         };
       }
       return () => {};
-    }, [elementSize, scrollTop]);
+    }, [elementSize, scrollTop, arr]);
 
     return (
       <div
