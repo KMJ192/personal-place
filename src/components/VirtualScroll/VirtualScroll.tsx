@@ -40,7 +40,8 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
     ref,
   ) => {
     const itemWrapperRef = useRef<HTMLDivElement | null>(null);
-    const maxLen = useRef<number>(0);
+    const listLen = useRef<number>(0);
+    const [count, setCount] = useState(0);
     const [elementSize, setElementSize] = useState({
       container: {
         width: 0,
@@ -60,7 +61,6 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
     const [arr, setArr] = useState<Array<number>>(
       itemCount > 0 ? Array.from({ length: 1 }, (_, idx) => idx) : [],
     );
-    const [test, setTest] = useState(0);
 
     const calculationSize = useRequestAnimationFrame(() => {
       const items = document.getElementsByClassName(itemClassName);
@@ -86,60 +86,41 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
             height: itemHeight,
           },
         });
-        const listLen = Math.ceil(containerHeight / itemHeight);
-        const newArr = Array.from({ length: listLen }, (_, idx) => idx);
-
-        setArr(newArr);
-        maxLen.current = listLen + 1;
-
-        setTest(itemHeight);
+        listLen.current = Math.ceil(containerHeight / itemHeight);
+        setArr(Array.from({ length: listLen.current + 2 }, (_, idx) => idx));
       }
     });
 
     const handleScroll = (e: Event) => {
       const container = e.target as HTMLDivElement;
       if (container.scrollTop >= scrollTop) {
-        console.log('down', test, test - container.scrollTop);
+        const next =
+          elementSize.item.height - scrollTop + count * elementSize.item.height;
+        if (next <= 0) {
+          setArr(
+            Array.from(
+              { length: listLen.current + 2 },
+              (_, idx) => idx + count,
+            ),
+          );
+          setCount(count + 1);
+        }
       } else {
-        console.log('up', test, test - container.scrollTop);
+        const prev =
+          elementSize.item.height - scrollTop + count * elementSize.item.height;
+        if (prev >= elementSize.item.height) {
+          setArr(
+            Array.from(
+              { length: listLen.current + 2 },
+              (_, idx) => arr[idx] - 1,
+            ),
+          );
+          if (0 <= count) {
+            setCount(count - 1);
+          }
+        }
       }
       setScrollTop(container.scrollTop);
-      if (elementSize.item.height - scrollTop >= 0) {
-        // if (arr.length < maxLen.current) {
-        //   console.log(
-        //     '양수',
-        //     elementSize.item.height * test - container.scrollTop,
-        //     test,
-        //   );
-        //   setArr((arr) => {
-        //     const newArr = Array.from(
-        //       { length: arr.length + 1 },
-        //       (_, idx) => idx,
-        //     );
-        //     return newArr;
-        //   });
-        //   if (test - 1 > 1) {
-        //     setTest(test - 1);
-        //   }
-        // }
-      } else {
-        // if (arr.length === maxLen.current) {
-        //   console.log(
-        //     '음수',
-        //     elementSize.item.height * test - container.scrollTop,
-        //     test,
-        //   );
-        //   setTest(test + 1);
-        //   maxLen.current -= 1;
-        //   setArr((arr) => {
-        //     const newArr = Array.from(
-        //       { length: arr.length - 1 },
-        //       (_, idx) => idx,
-        //     );
-        //     return newArr;
-        //   });
-        // }
-      }
     };
 
     useIsomorphicLayoutEffect(() => {
@@ -200,9 +181,6 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
     );
   },
 );
-
-// 스크롤의 크기는 따로 계산하지 않는다.
-// container의 크기는 영역의 크기만큼 주고 스크롤을 생성 시킨다.
 
 export type { ItemProps };
 export default VirtualScroll;
