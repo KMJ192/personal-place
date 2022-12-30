@@ -6,7 +6,6 @@ import {
   useRequestAnimationFrame,
   useIsomorphicLayoutEffect,
 } from '@src/hooks';
-import useComponentDidMount from '@src/hooks/useComponentDidMount/useComponentDidMount';
 
 type ItemProps = {
   index: number;
