@@ -6,6 +6,7 @@ import {
   useRequestAnimationFrame,
   useIsomorphicLayoutEffect,
 } from '@src/hooks';
+import useComponentDidMount from '@src/hooks/useComponentDidMount/useComponentDidMount';
 
 type ItemProps = {
   index: number;
@@ -40,16 +41,18 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
     ref,
   ) => {
     const itemWrapperRef = useRef<HTMLDivElement | null>(null);
-    // const arr = useRef<Array<number>>(
-    //   itemCount > 0 ? Array.from({ length: 1 }, (_, idx) => idx) : [],
-    // );
-    // const listLen = useRef<number>(0);
+    const listLen = useRef<number>(0);
     const count = useRef<number>(0);
     const last = useRef<number>(0);
+
+    // 최초 렌더링 시 리스트의 크기 계산 여부를 위한 flag
+    const calculationFlag = useRef<boolean>(false);
+    // 리스트의 화면 보정을 위한 flag
+    const correctionFlag = useRef<boolean>(false);
+
     const [arr, setArr] = useState(
       itemCount > 0 ? Array.from({ length: 1 }, (_, idx) => idx) : [],
     );
-    const [listLen, setListLen] = useState(0);
     const [scrollTop, setScrollTop] = useState(0);
     const [elementSize, setElementSize] = useState({
       container: {
@@ -93,9 +96,10 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
         };
 
         setElementSize(elementSize);
-        setListLen(lLen);
         setArr(Array.from({ length: lLen + 2 }, (_, idx) => idx));
+        listLen.current = lLen;
       }
+      calculationFlag.current = true;
     });
 
     const handleScroll = (e: Event) => {
@@ -103,24 +107,27 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
       const cnt = count.current;
       const position =
         elementSize.item.height - scrollTop + cnt * elementSize.item.height;
+      const lLen = listLen.current;
 
       last.current = Math.round(
-        container.scrollTop / elementSize.item.height + listLen - 1,
+        container.scrollTop / elementSize.item.height + lLen - 1,
       );
 
       if (container.scrollTop >= scrollTop) {
+        // down action
         if (position <= 0) {
           const newArr = Array.from(
-            { length: listLen + 2 },
+            { length: lLen + 2 },
             (_, idx) => idx + cnt,
           );
           setArr(newArr);
           count.current += 1;
         }
       } else {
+        // up action
         if (position >= elementSize.item.height) {
           const newArr = Array.from(
-            { length: listLen + 2 },
+            { length: lLen + 2 },
             (_, idx) => arr[idx] - 1,
           );
           setArr(newArr);
@@ -130,6 +137,7 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
         }
       }
       setScrollTop(() => container.scrollTop);
+      correctionFlag.current = true;
     };
 
     useIsomorphicLayoutEffect(() => {
@@ -149,18 +157,32 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
         };
       }
       return () => {};
-    }, [elementSize, scrollTop, arr]);
+    }, [elementSize, scrollTop]);
 
-    // list 크기 보정
+    // list 위치 보정
     useEffect(() => {
-      if (count.current + listLen - 1 !== last.current) {
+      if (
+        correctionFlag.current &&
+        count.current + listLen.current - 1 !== last.current
+      ) {
         const newArr = Array.from(
-          { length: listLen + 2 },
+          { length: listLen.current + 2 },
           (_, idx) => last.current - idx,
         );
+        correctionFlag.current = false;
         setArr(newArr);
       }
-    }, [count.current, last.current]);
+    }, [count.current, last.current, arr]);
+
+    useEffect(() => {
+      const container = (ref as RefObject<HTMLDivElement>).current;
+      if (calculationFlag.current && container) {
+        last.current = Math.round(
+          container?.scrollTop / elementSize.item.height + listLen.current - 1,
+        );
+        correctionFlag.current = true;
+      }
+    }, []);
 
     return (
       <div
@@ -177,7 +199,7 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
         <div
           ref={itemWrapperRef}
           style={{
-            width: '100%', // `${elementSize.itemWrapper.width}px`,
+            width: `${elementSize.itemWrapper.width}px`,
             height: `${elementSize.itemWrapper.height}px`,
           }}
         >
