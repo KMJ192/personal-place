@@ -7,7 +7,7 @@ import {
   useIsomorphicLayoutEffect,
 } from '@src/hooks';
 
-type ItemProps = {
+type VirtualListItemProps = {
   index: number;
   className: string;
   style?: CSSType;
@@ -22,7 +22,7 @@ type Props = {
   itemStyle?: CSSType;
   data?: any;
   className?: string;
-  children: (props: ItemProps) => JSX.Element;
+  children: (props: VirtualListItemProps) => JSX.Element;
 };
 
 const VirtualScroll = forwardRef<HTMLDivElement, Props>(
@@ -227,5 +227,5 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
   },
 );
 
-export type { ItemProps };
+export type { VirtualListItemProps };
 export default VirtualScroll;
