@@ -2,7 +2,7 @@ import { forwardRef, RefObject, useEffect, useRef, useState } from 'react';
 
 import type { Properties as CSSType } from 'csstype';
 
-import { useComponentDidMount, useRequestAnimationFrame } from '@src/hooks';
+import { useRequestAnimationFrame } from '@src/hooks';
 
 type VirtualListItemProps = {
   index: number;
@@ -107,7 +107,7 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
           container.scrollTop / elementSize.item.height + listLen.current - 1,
         );
 
-        if (last >= itemCount) {
+        if (last > itemCount) {
           setLast(itemCount);
           return;
         }
@@ -152,7 +152,14 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
           }}
         >
           {arr.current.map((_, idx) => {
-            const count = last - idx;
+            const count = last - idx + 1;
+            // count = arr.current.length - count - 1;
+            // if (arr.current.length > 1) {
+            //   console.log(last - idx);
+            // }
+            if (count >= itemCount) {
+              return null;
+            }
             return (
               <div
                 key={count}
