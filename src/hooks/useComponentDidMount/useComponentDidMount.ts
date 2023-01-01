@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import useIsomorphicLayoutEffect from '../useIsomorphicLayoutEffect/useIsomorphicLayoutEffect';
 
 function useComponentDidMount(callback: () => void | (() => void)) {
   const isMount = useRef<boolean>(false);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     let unmount: void | (() => void);
     if (isMount.current === false) {
       isMount.current = true;

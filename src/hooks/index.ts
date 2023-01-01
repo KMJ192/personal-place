@@ -1,4 +1,4 @@
-export { default as useComponuntDidMount } from './useComponentDidMount/useComponentDidMount';
+export { default as useComponentDidMount } from './useComponentDidMount/useComponentDidMount';
 export { default as useDebounce } from './useDebounce/useDebounce';
 export { default as useIntersectionObserver } from './useIntersectionObserver/useIntersectionObserver';
 export { default as useInterval } from './useInterval/useInterval';
