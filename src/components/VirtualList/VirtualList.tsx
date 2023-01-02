@@ -41,7 +41,7 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
     const arr = useRef<Array<number>>(
       itemCount > 0 ? Array.from({ length: 1 }, (_, idx) => idx) : [],
     );
-
+    const first = useRef<number>(0);
     const [last, setLast] = useState(0);
     const [elementSize, setElementSize] = useState({
       container: {
@@ -85,7 +85,7 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
         };
 
         setElementSize(elementSize);
-        arr.current = Array.from({ length: lLen + 1 }, (_, idx) => idx);
+        arr.current = Array.from({ length: lLen + 2 }, (_, idx) => idx);
         listLen.current = lLen;
 
         const last = Math.round(
@@ -112,6 +112,7 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
           return;
         }
         setLast(last);
+        first.current = last - listLen.current;
       };
 
       const container = (ref as RefObject<HTMLDivElement>).current;
@@ -148,16 +149,14 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
           ref={itemWrapperRef}
           style={{
             width: `${elementSize.itemWrapper.width}px`,
+            // height:
+            //   itemCount <= 0 ? `${elementSize.itemWrapper.height}px` : '0',
             height: `${elementSize.itemWrapper.height}px`,
           }}
         >
           {arr.current.map((_, idx) => {
-            const count = last - idx + 1;
-            // count = arr.current.length - count - 1;
-            // if (arr.current.length > 1) {
-            //   console.log(last - idx);
-            // }
-            if (count >= itemCount) {
+            const count = first.current + idx;
+            if (count < 0 || count >= itemCount) {
               return null;
             }
             return (
