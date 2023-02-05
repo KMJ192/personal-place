@@ -16,7 +16,7 @@ function Column({ index, className, data, style }: VirtualListItemProps) {
 }
 
 function VirtualScrollTestPage() {
-  const [itemCount, setItemCount] = useState(100);
+  const [itemCount, setItemCount] = useState(10000);
   const testRef = useRef(null);
 
   // useInterval(() => {
