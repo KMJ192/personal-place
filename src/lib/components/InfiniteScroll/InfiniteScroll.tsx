@@ -1,6 +1,7 @@
 import { forwardRef, useEffect, useRef } from 'react';
 
-import { useIntersectionObserver, useRequestAnimationFrame } from '@src/hooks';
+import useIntersectionObserver from '@lib/hooks/useIntersectionObserver/useIntersectionObserver';
+import useRequestAnimationFrame from '@lib/hooks/useRequestAnimationFrame/useRequestAnimationFrame';
 
 type Props = {
   children: JSX.Element;
@@ -12,7 +13,7 @@ const InfiniteScroll = forwardRef<HTMLDivElement, Props>(
   ({ children, onLoad, className }: Props, ref) => {
     const curRef = useRef<HTMLDivElement>(null);
 
-    const { entry } = useIntersectionObserver(curRef, {}, {});
+    const entry = useIntersectionObserver(curRef, {});
 
     const next = useRequestAnimationFrame(onLoad);
 
