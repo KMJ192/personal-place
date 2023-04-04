@@ -1,13 +1,12 @@
-import { forwardRef, RefObject, useEffect, useRef, useState } from 'react';
+import { forwardRef, useEffect, useRef, useState } from 'react';
+import type { RefObject, CSSProperties } from 'react';
 
-import type { Properties as CSSType } from 'csstype';
-
-import { useRequestAnimationFrame } from '@src/hooks';
+import useRequestAnimationFrame from '@lib/hooks/useRequestAnimationFrame/useRequestAnimationFrame';
 
 type VirtualListItemProps = {
   index: number;
   className: string;
-  style?: CSSType;
+  style?: CSSProperties;
   data?: any;
 };
 
@@ -15,14 +14,14 @@ type Props = {
   id: string;
   itemClassName: string;
   itemCount: number;
-  style?: CSSType;
-  itemStyle?: CSSType;
+  style?: CSSProperties;
+  itemStyle?: CSSProperties;
   data?: any;
   className?: string;
   children: (props: VirtualListItemProps) => JSX.Element;
 };
 
-const VirtualScroll = forwardRef<HTMLDivElement, Props>(
+const VirtualList = forwardRef<HTMLDivElement, Props>(
   (
     {
       children,
@@ -184,4 +183,4 @@ const VirtualScroll = forwardRef<HTMLDivElement, Props>(
 );
 
 export type { VirtualListItemProps };
-export default VirtualScroll;
+export default VirtualList;
