@@ -1,0 +1,14 @@
+@import '../../Select.module.scss';
+
+.search-box {
+  .icon {
+    color: $light-900;
+    transform: rotate(0);
+    display: flex;
+    align-items: center;
+    @include transition(transform);
+    &.show {
+      transform: rotate(-180deg);
+    }
+  }
+}

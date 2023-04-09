@@ -1,0 +1,18 @@
+@import '../GNB.module.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: $nav-width;
+  background-color: $light-50;
+  row-gap: 16px;
+  @include transition(width);
+}
+
+@media screen and (max-width: $nav-max-width) {
+  .container {
+    align-items: center;
+    width: $nav-width-reactive;
+  }
+}

@@ -1,0 +1,40 @@
+@import '../GNB.module.scss';
+
+.menu-group {
+  overflow: hidden;
+  @include transition(max-height 0.2s ease-in-out, padding 0.1s);
+  max-height: 0;
+  &.show {
+    max-height: 100vh;
+  }
+  &.second-depth {
+    background: $light-400;
+    border-radius: 12px 0px 0px 12px;
+    margin-left: 16px;
+  }
+  &.last-depth {
+    margin-left: 16px;
+  }
+  &.collapse {
+    max-height: 0;
+    padding: 0;
+    @include transition(max-height 0.2s cubic-bezier(0, 1, 0, 1), padding 0.5s);
+  }
+}
+
+@media screen and (max-width: $nav-max-width) {
+  .menu-group {
+    &.second-depth {
+      margin-left: 0;
+      border-radius: 12px;
+      padding: 4px;
+    }
+
+    &.last-depth {
+      margin-left: 0;
+    }
+    &.collapse {
+      padding: 0;
+    }
+  }
+}
