@@ -7,14 +7,14 @@
   &.show {
     max-height: 100vh;
   }
-  &.second-depth {
-    background: $light-400;
-    border-radius: 12px 0px 0px 12px;
-    margin-left: 16px;
-  }
-  &.last-depth {
-    margin-left: 16px;
-  }
+  // &.second-depth {
+  //   background: #ffffff;
+  //   border-radius: 12px 0px 0px 12px;
+  //   margin-left: 16px;
+  // }
+  // &.last-depth {
+  //   margin-left: 16px;
+  // }
   &.collapse {
     max-height: 0;
     padding: 0;

@@ -1,9 +1,7 @@
 import { forwardRef, isValidElement } from 'react';
 import type { ReactNode, ElementType, Ref } from 'react';
 
-import { OVERRIDABLE_PROPS } from '@lib/types/utilityTypes/utilityTypes';
-
-import Text from '@lib/components/atom/Text/Text';
+import type { OVERRIDABLE_PROPS } from '@src/components/ui/types/utilityTypes/utilityTypes';
 
 import classNames from 'classnames/bind';
 import style from './Menu.module.scss';
@@ -49,11 +47,7 @@ function Menu<T extends ElementType = typeof DEFAULT_COMPONENT_ELEMENT>(
       >
         <div className={cx('left')}>
           {isValidElement(left) && <div className={cx('icon')}>{left}</div>}
-          <div className={cx('contents')}>
-            <Text typo='p2' weight='r'>
-              {children}
-            </Text>
-          </div>
+          <div className={cx('contents')}>{children}</div>
         </div>
         {isValidElement(right) && <div className={cx('right')}>{right}</div>}
       </div>

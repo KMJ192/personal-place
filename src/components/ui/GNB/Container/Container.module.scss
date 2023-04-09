@@ -5,7 +5,7 @@
   flex-direction: column;
   height: 100%;
   width: $nav-width;
-  background-color: $light-50;
+  background-color: #c0c0c0;
   row-gap: 16px;
   @include transition(width);
 }
