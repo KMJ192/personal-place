@@ -34,6 +34,30 @@ const contents: Array<GNBItem> = [
   {
     key: 'utils',
     contents: 'Utils',
+    child: [
+      {
+        key: 'customHooks',
+        contents: 'CustomHooks',
+        child: [
+          {
+            key: 'useTrie',
+            contents: 'useTrie',
+          },
+          {
+            key: 'useIntersectionObserver',
+            contents: 'useIntersectionObserver',
+          },
+          {
+            key: 'useDebounce',
+            contents: 'useDebounce',
+          },
+          {
+            key: 'useResizeObserver',
+            contents: 'useResizeObserver',
+          },
+        ],
+      },
+    ],
   },
 ];
 
@@ -42,6 +66,7 @@ const paths: { [key: string]: string } = {
   clickAwayListener: '/components/click-away-listener',
   infiniteScroll: '/components/infinite-scroll',
   virtualList: '/components/virtual-list',
+  useTrie: '/utils/use-trie',
 };
 
 function Home() {

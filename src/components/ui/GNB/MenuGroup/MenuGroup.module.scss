@@ -2,23 +2,15 @@
 
 .menu-group {
   overflow: hidden;
-  @include transition(max-height 0.2s ease-in-out, padding 0.1s);
   max-height: 0;
+  @include transition(max-height 1s ease-in-out, padding 1s);
   &.show {
     max-height: 100vh;
   }
-  // &.second-depth {
-  //   background: #ffffff;
-  //   border-radius: 12px 0px 0px 12px;
-  //   margin-left: 16px;
-  // }
-  // &.last-depth {
-  //   margin-left: 16px;
-  // }
   &.collapse {
     max-height: 0;
     padding: 0;
-    @include transition(max-height 0.2s cubic-bezier(0, 1, 0, 1), padding 0.5s);
+    @include transition(max-height 1s cubic-bezier(0, 1, 0, 1), padding 1s);
   }
 }
 
