@@ -55,6 +55,10 @@ const contents: Array<GNBItem> = [
             key: 'useResizeObserver',
             contents: 'useResizeObserver',
           },
+          {
+            key: 'useDetectElement',
+            contents: 'useDetectElement',
+          },
         ],
       },
     ],
@@ -67,6 +71,7 @@ const paths: { [key: string]: string } = {
   infiniteScroll: '/components/infinite-scroll',
   virtualList: '/components/virtual-list',
   useTrie: '/utils/use-trie',
+  useDetectElement: '/utils/use-detect-element',
 };
 
 function Home() {

@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  column-gap: 20px;
+  position: relative;
+  
+  .test-node {
+    position: absolute;
+    transform: translate(100px, 100px);
+  }
+
+  .btn {
+    width: 1000px;
+  }
+}
