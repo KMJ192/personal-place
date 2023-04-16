@@ -3857,6 +3857,7 @@ __metadata:
     prettier: ^2.8.7
     react: 18.2.0
     react-dom: 18.2.0
+    react-hook-form: ^7.43.9
     sass: ^1.60.0
     tsc-alias: ^1.8.5
     typescript: ^5.0.3
@@ -3864,6 +3865,15 @@ __metadata:
     vite-plugin-wasm-pack: ^0.1.12
   languageName: unknown
   linkType: soft
+
+"react-hook-form@npm:^7.43.9":
+  version: 7.43.9
+  resolution: "react-hook-form@npm:7.43.9"
+  peerDependencies:
+    react: ^16.8.0 || ^17 || ^18
+  checksum: 65b94de625f2b7921c4e856bf0abbe142bfe06c052217bd1bcc3a842e2cc37fa3a3e03758119dc038bbcf5edb49e02c29206528b80b201f9a4d601471ef78153
+  languageName: node
+  linkType: hard
 
 "react-is@npm:^16.13.1":
   version: 16.13.1

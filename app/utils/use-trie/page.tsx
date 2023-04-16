@@ -1,9 +1,8 @@
 import React from 'react';
+import Template from '@common/Template/Template';
 
 function page() {
-  const wardList = [];
-
-  return <div>page</div>;
+  return <Template>page</Template>;
 }
 
 export default page;

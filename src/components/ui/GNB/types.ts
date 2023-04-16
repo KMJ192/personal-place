@@ -8,6 +8,7 @@ type GNBItem = {
   child?: Array<GNBItem>;
   roll?: 'top' | 'mid' | 'bottom';
   onClick?: (e: React.MouseEvent) => void;
+  path?: string;
 };
 
 export type { GNBItem };

@@ -28,6 +28,9 @@
       ],
       "@components/*": [
         "src/lib/components/*"
+      ],
+      "@common/*": [
+        "app/components/common/*"
       ]
     },
     "plugins": [

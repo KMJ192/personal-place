@@ -1,95 +1,10 @@
-'use client';
-
-import { useRouter } from 'next/navigation';
-import PageTemplate from '@src/components/PageTemplate/PageTemplate';
-import { GNBItem } from '@src/components/ui/GNB/types';
-
-import classNames from 'classnames/bind';
-import style from './page.module.scss';
-const cx = classNames.bind(style);
-
-const contents: Array<GNBItem> = [
-  {
-    key: 'components',
-    contents: 'Components',
-    child: [
-      {
-        key: 'ifComponent',
-        contents: 'IfComponent',
-      },
-      {
-        key: 'clickAwayListener',
-        contents: 'ClickAwayListener',
-      },
-      {
-        key: 'infiniteScroll',
-        contents: 'InfiniteScroll',
-      },
-      {
-        key: 'virtualList',
-        contents: 'VirtualList',
-      },
-    ],
-  },
-  {
-    key: 'utils',
-    contents: 'Utils',
-    child: [
-      {
-        key: 'customHooks',
-        contents: 'CustomHooks',
-        child: [
-          {
-            key: 'useTrie',
-            contents: 'useTrie',
-          },
-          {
-            key: 'useIntersectionObserver',
-            contents: 'useIntersectionObserver',
-          },
-          {
-            key: 'useDebounce',
-            contents: 'useDebounce',
-          },
-          {
-            key: 'useResizeObserver',
-            contents: 'useResizeObserver',
-          },
-          {
-            key: 'useDetectElement',
-            contents: 'useDetectElement',
-          },
-        ],
-      },
-    ],
-  },
-];
-
-const paths: { [key: string]: string } = {
-  ifComponent: '/components/if-component',
-  clickAwayListener: '/components/click-away-listener',
-  infiniteScroll: '/components/infinite-scroll',
-  virtualList: '/components/virtual-list',
-  useTrie: '/utils/use-trie',
-  useDetectElement: '/utils/use-detect-element',
-};
+import Template from './components/common/Template/Template';
 
 function Home() {
-  const router = useRouter();
-
-  const onClickNav = (key: string | number) => {
-    const p = paths[String(key)];
-    if (p) {
-      router.push(p);
-    }
-  };
-
   return (
-    <main className={cx('main')}>
-      <PageTemplate contents={contents} onClickNav={onClickNav}>
-        <div>page</div>
-      </PageTemplate>
-    </main>
+    <Template>
+      <div>page</div>
+    </Template>
   );
 }
 

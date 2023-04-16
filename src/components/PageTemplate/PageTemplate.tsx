@@ -10,15 +10,14 @@ const cx = classNames.bind(style);
 type Props = {
   children: ReactNode;
   contents?: Array<GNBItem>;
-  onClickNav?: (key: string | number) => void;
 };
 
-function PageTemplate({ children, contents, onClickNav }: Props) {
+function PageTemplate({ children, contents }: Props) {
   return (
     <div className={cx('template')}>
       <div className={cx('header')}>header</div>
       <div className={cx('nav-page')}>
-        <GNB.Template contents={contents} onClickNav={onClickNav} />
+        <GNB.NextTemplate contents={contents} />
         <div className={cx('contents')}>
           <div className={cx('page')}>{children}</div>
           <footer className={cx('footer')}>footer</footer>
