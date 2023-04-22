@@ -10,8 +10,4 @@ import type { ComponentWithConditionPropsWithFunctionChildren } from '../types';
 const Case: FC<ComponentWithConditionPropsWithFunctionChildren> = (props) =>
   render(props);
 
-Case.defaultProps = {
-  children: null,
-};
-
 export default Case;

@@ -8,15 +8,11 @@ import type { ComponentWithConditionPropsWithFunctionChildren } from '../types';
  */
 const When: FC<ComponentWithConditionPropsWithFunctionChildren> = ({
   condition,
-  children,
+  children = null,
 }) => {
   const conditionResult = Boolean(getConditionResult(condition));
 
   return conditionResult && children ? render({ children }) : null;
-};
-
-When.defaultProps = {
-  children: null,
 };
 
 export default When;

@@ -8,15 +8,11 @@ import type { ComponentWithConditionPropsWithFunctionChildren } from '../types';
  */
 const Unless: FC<ComponentWithConditionPropsWithFunctionChildren> = ({
   condition,
-  children,
+  children = null,
 }) => {
   const conditionResult = Boolean(getConditionResult(condition));
 
   return !conditionResult && children ? render({ children }) : null;
-};
-
-Unless.defaultProps = {
-  children: null,
 };
 
 export default Unless;

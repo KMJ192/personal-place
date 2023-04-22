@@ -8,8 +8,4 @@ import type { FCWithImplicitChildren } from '../types';
  */
 const Default: FCWithImplicitChildren = (props) => render(props);
 
-Default.defaultProps = {
-  children: null,
-};
-
 export default Default;
