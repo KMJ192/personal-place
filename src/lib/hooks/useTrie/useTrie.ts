@@ -6,7 +6,7 @@ import Hangul from './Hangul';
 import type { TrieDataType } from './types';
 
 /**
- * trie Datastructure를 생성
+ * trie Data structure를 생성
  * @param dictionary trie 생성 데이터
  * @param isBuildTrie trie 생성 여부
  * @returns

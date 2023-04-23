@@ -112,19 +112,19 @@ class Trie implements ITrie {
 
   /**
    * 입력된 문자열이 포함된 모든 데이터 출력
-   * @param inputed
+   * @param input
    */
-  public containList = (inputed: string): TrieDataType[] => {
-    if (!inputed || inputed.length === 0) return [];
+  public containList = (input: string): TrieDataType[] => {
+    if (!input || input.length === 0) return [];
     const containList: TrieDataType[] = [];
-    const extractInputed = this.extractStr(inputed).join('');
+    const extract = this.extractStr(input).join('');
 
     const recursion = (node: TrieNode) => {
       if (node === undefined) return;
       if (node.isWord && node.info) {
         node.info.forEach((val: TrieDataType) => {
           const extractLabel = this.extractStr(val.label).join('');
-          if (extractLabel.includes(extractInputed)) {
+          if (extractLabel.includes(extract)) {
             containList.push(val);
           }
         });
@@ -175,7 +175,7 @@ class Trie implements ITrie {
   /**
    * 생성된 trie ds getter
    */
-  get makedTrie(): TrieNode {
+  get madeTrie(): TrieNode {
     return this.root;
   }
 }
