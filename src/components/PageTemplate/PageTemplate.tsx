@@ -5,6 +5,8 @@ import type { GNBItem } from '../ui/GNB/types';
 
 import classNames from 'classnames/bind';
 import style from './PageTemplate.module.scss';
+import Header from '../ui/Header';
+import Footer from '../ui/Footer';
 const cx = classNames.bind(style);
 
 type Props = {
@@ -15,12 +17,19 @@ type Props = {
 function PageTemplate({ children, contents }: Props) {
   return (
     <div className={cx('template')}>
-      <div className={cx('header')}>header</div>
+      <Header.Container>
+        <Header.LogoSection>Logo</Header.LogoSection>
+        <Header.LeftSection>Left</Header.LeftSection>
+        <Header.RightSection>Right</Header.RightSection>
+      </Header.Container>
       <div className={cx('nav-page')}>
         <GNB.NextTemplate contents={contents} />
         <div className={cx('contents')}>
           <div className={cx('page')}>{children}</div>
-          <footer className={cx('footer')}>footer</footer>
+          <Footer.Container>
+            <Footer.LeftSection>Left</Footer.LeftSection>
+            <Footer.RightSection>Right</Footer.RightSection>
+          </Footer.Container>
         </div>
       </div>
     </div>
