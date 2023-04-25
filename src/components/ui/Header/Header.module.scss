@@ -1,1 +1,3 @@
-$background: #292929;
+@import '../styles/color.module.scss';
+
+$background: $header-color;

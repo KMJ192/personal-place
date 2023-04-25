@@ -36,15 +36,7 @@ function Menu<T extends ElementType = typeof DEFAULT_COMPONENT_ELEMENT>(
 
   return (
     <Element {...props} ref={ref} className={cx('menu', className)}>
-      <div
-        className={cx(
-          'item',
-          selected && 'select',
-          depth === 0 && 'first-depth',
-          depth === 1 && 'second-depth',
-          depth === 2 && 'last-depth',
-        )}
-      >
+      <div className={cx('item', selected && 'select')}>
         <div className={cx('left')}>
           {isValidElement(left) && <div className={cx('icon')}>{left}</div>}
           <div className={cx('contents')}>{children}</div>

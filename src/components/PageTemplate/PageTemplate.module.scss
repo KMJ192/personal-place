@@ -1,7 +1,5 @@
 @import '../ui/styles/scrollbar.scss';
 
-$footer-height: 64px;
-
 .template {
   display: flex;
   flex-direction: column;
@@ -15,7 +13,7 @@ $footer-height: 64px;
       width: inherit;
       .page {
         overflow: scroll;
-        height: calc(100% - $footer-height);
+        height: calc(100% - 64px);
         @include scrollbar();
       }
     }
