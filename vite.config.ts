@@ -31,7 +31,7 @@ export default defineConfig({
     minify: true,
     lib: {
       entry: resolve(__dirname, 'src/lib/index.ts'),
-      name: 'JonathanUi',
+      name: 'sample',
       formats: ['cjs', 'es', 'umd'],
       fileName: (format) => `index.${format}.js`,
     },

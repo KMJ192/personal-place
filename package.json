@@ -1,11 +1,11 @@
 {
-  "name": "react-function",
+  "name": "personal-place",
   "author": {
     "name": "MyeongJunKim",
     "email": "myeongjun222@gmail.com"
   },
   "version": "0.0.1",
-  "description": "react functions",
+  "description": "my place",
   "files": [
     "build"
   ],
