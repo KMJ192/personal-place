@@ -1,6 +1,6 @@
-# REACT-FUNCTION
+# Personal-place
 
-react에서 사용할 수 있는 custom hooks 또는 component, utile함수들을 개발하기 위한 repository입니다.
+- react에서 사용할 수 있는 custom hooks 또는 component, utile함수 및 ui 컴포넌트들을 저장
 
 ### dev stack
 
