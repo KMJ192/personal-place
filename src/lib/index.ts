@@ -1,12 +1,12 @@
 // components
-export { default as ClickAwayListener } from './components/ClickAwayListener/ClickAwayListener';
-export { default as Case } from './components/IfComponents/SwitchCase/Case';
-export { default as Default } from './components/IfComponents/SwitchCase/Default';
-export { default as Switch } from './components/IfComponents/SwitchCase/Switch';
-export { default as Unless } from './components/IfComponents/WhenUnless/Unless';
-export { default as When } from './components/IfComponents/WhenUnless/When';
-export { default as InfiniteScroll } from './components/InfiniteScroll/InfiniteScroll';
-export { default as VirtualList } from './components/VirtualList/VirtualList';
+export { default as ClickAwayListener } from './utile/components/ClickAwayListener/ClickAwayListener';
+export { default as Case } from './utile/components/IfComponents/SwitchCase/Case';
+export { default as Default } from './utile/components/IfComponents/SwitchCase/Default';
+export { default as Switch } from './utile/components/IfComponents/SwitchCase/Switch';
+export { default as Unless } from './utile/components/IfComponents/WhenUnless/Unless';
+export { default as When } from './utile/components/IfComponents/WhenUnless/When';
+export { default as InfiniteScroll } from './utile/components/InfiniteScroll/InfiniteScroll';
+export { default as VirtualList } from './utile/components/VirtualList/VirtualList';
 
 // hooks
 export { default as useComponentDidMount } from './hooks/useComponentDidMount/useComponentDidMount';

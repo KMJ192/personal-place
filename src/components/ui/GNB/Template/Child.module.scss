@@ -1,9 +1,0 @@
-@import '../GNB.module.scss';
-
-.right-icon {
-  transform: rotate(-90deg);
-  @include transition(transform);
-  &.show {
-    transform: rotate(0deg);
-  }
-}

@@ -2,8 +2,8 @@
 
 import type { ReactNode } from 'react';
 
-import type { GNBItem } from '@src/components/ui/GNB/types';
-import PageTemplate from '@src/components/PageTemplate/PageTemplate';
+import type { GNBItem } from '@lib/ui/GNB/types';
+import PageTemplate from '@lib/ui/PageTemplate/PageTemplate';
 
 import classNames from 'classnames/bind';
 import style from './style.module.scss';

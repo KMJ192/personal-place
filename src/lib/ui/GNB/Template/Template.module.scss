@@ -1,0 +1,11 @@
+@import '../../styles/scrollbar.scss';
+
+.gnb-container {
+  .menu-group {
+    overflow-y: scroll;
+    @include scrollbar();
+    .bottom {
+      margin-top: auto;
+    }
+  }
+}

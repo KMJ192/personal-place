@@ -1,0 +1,8 @@
+@import '../Header.module.scss';
+
+.container {
+  display: flex;
+  align-items: center;
+  padding: 32px;
+  background: $background;
+}

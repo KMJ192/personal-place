@@ -1,0 +1,5 @@
+@import './theme/GNB.scss';
+
+body {
+  @include GNB;
+}

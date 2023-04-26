@@ -1,0 +1,49 @@
+// transition time value
+$trans-default: 0.15s;
+$trans-fade: 0.15s;
+$trans-rotate: 0.15s;
+$trans-transform: 0.15s;
+$trans-progress: 0.15s;
+$trans-folding: 0.15s;
+$trans-modal-width: 0.4s;
+// 사용법
+//@include transition(all)
+//@include transition(color, height)
+//@include transition(color 0.2s, height 0.3s)
+//@include transition(color 0.2s ease-in-out, height 0.3s ease-in-out)
+
+@mixin transition($transitions...) {
+  $unfoldedTransitions: ();
+  @each $transition in $transitions {
+    $unfoldedTransitions: append(
+      $unfoldedTransitions,
+      unfoldTransition($transition),
+      comma
+    );
+  }
+
+  -webkit-transition: $unfoldedTransitions;
+  transition: $unfoldedTransitions;
+}
+
+@function unfoldTransition($transition) {
+  // Default values
+  $property: all;
+  $duration: 0.15s;
+  $easing: ease-in-out;
+  $delay: null;
+  $defaultProperties: ($property, $duration, $easing, $delay);
+
+  $unfoldedTransition: ();
+  @for $i from 1 through length($defaultProperties) {
+    $p: null;
+    @if $i <= length($transition) {
+      $p: nth($transition, $i);
+    } @else {
+      $p: nth($defaultProperties, $i);
+    }
+    $unfoldedTransition: append($unfoldedTransition, $p);
+  }
+
+  @return $unfoldedTransition;
+}
