@@ -90,7 +90,9 @@ function Template({ children }: Props) {
 
   return (
     <main className={cx('main')}>
-      <PageTemplate contents={contents.current}>{children}</PageTemplate>
+      <PageTemplate contents={contents.current} className={cx('page-template')}>
+        <section className={cx('page')}>{children}</section>
+      </PageTemplate>
     </main>
   );
 }

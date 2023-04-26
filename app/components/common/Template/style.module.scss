@@ -1,7 +1,9 @@
 .main {
   width: 100vw;
   height: 100vh;
-  & > button {
-    padding: 12px 24px;
+  .page-template {
+    .page {
+      padding: 32px;
+    }
   }
 }
