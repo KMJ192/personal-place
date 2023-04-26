@@ -55,25 +55,3 @@ $gnb-menu-select-box-shadow: var(--gnb-menu-select-box-shadow);
     }
   }
 }
-
-@media screen and (max-width: $gnb-max-width) {
-  .menu {
-    .item {
-      justify-content: center;
-      .contents,
-      .right {
-        width: 0;
-        opacity: 0;
-        display: none;
-      }
-      &.select {
-        border-radius: 12px;
-        width: 60px;
-        margin-left: 10px;
-        .right {
-          display: none;
-        }
-      }
-    }
-  }
-}

@@ -21,7 +21,6 @@ function Child({ item, depth, options, onClickItem }: Props) {
   return (
     <>
       <GNB.Menu
-        depth={depth}
         left={item.leftIcon}
         right={
           <div

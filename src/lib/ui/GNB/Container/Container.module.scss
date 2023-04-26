@@ -6,15 +6,8 @@ $gnb-background: var(--gnb-background);
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: $gnb-width;
+  width: $gnb-width-default;
   background: $gnb-background;
   row-gap: 16px;
   @include transition(width);
-}
-
-@media screen and (max-width: $gnb-max-width) {
-  .container {
-    align-items: center;
-    width: $gnb-width-reactive;
-  }
 }

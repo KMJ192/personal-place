@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 
 import GNB from '../../GNB';
@@ -27,7 +27,6 @@ function Child({ item, depth, options, onClickItem }: Props) {
       <When condition={isPath}>
         <Link href={String(item.path)}>
           <GNB.Menu
-            depth={depth}
             left={item.leftIcon}
             right={
               <div
@@ -50,7 +49,6 @@ function Child({ item, depth, options, onClickItem }: Props) {
       </When>
       <Unless condition={isPath}>
         <GNB.Menu
-          depth={depth}
           left={item.leftIcon}
           right={
             <div

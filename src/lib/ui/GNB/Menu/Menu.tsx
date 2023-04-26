@@ -9,7 +9,6 @@ const cx = classNames.bind(style);
 
 type BaseProps = {
   selected?: boolean;
-  depth?: number;
   left?: ReactNode;
   right?: ReactNode;
   children?: ReactNode;
@@ -22,7 +21,6 @@ type Props<T extends ElementType> = OVERRIDABLE_PROPS<T, BaseProps>;
 function Menu<T extends ElementType = typeof DEFAULT_COMPONENT_ELEMENT>(
   {
     selected = false,
-    depth = 0,
     left,
     right,
     children,

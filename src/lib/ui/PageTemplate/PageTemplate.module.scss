@@ -22,15 +22,3 @@
     }
   }
 }
-
-@media screen and (max-width: $gnb-max-width) {
-  .template {
-    .nav-page {
-      .contents {
-        .page {
-          width: $page-width-reactive;
-        }
-      }
-    }
-  }
-}
