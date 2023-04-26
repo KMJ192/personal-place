@@ -6,7 +6,7 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-
+  overflow: hidden;
   .nav-page {
     display: flex;
     width: 100%;
@@ -14,9 +14,9 @@
     .contents {
       width: inherit;
       .page {
-        overflow: scroll;
-        height: calc(100% - 64px);
+        height: $page-height;
         width: $page-width;
+        overflow: scroll;
         @include scrollbar();
       }
     }

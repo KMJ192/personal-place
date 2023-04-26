@@ -1,3 +1,6 @@
+$header-height: 72px;
+$footer-height: 52px;
+
 $gnb-width: 234px;
 $gnb-width-reactive: 70px;
 $gnb-max-width: 634px;
@@ -5,6 +8,4 @@ $gnb-hidden-width: 300px;
 
 $page-width: calc(100vw - $gnb-width);
 $page-width-reactive: calc(100vw - $gnb-width-reactive);
-
-$header-height: 64px;
-$footer-height: 64px;
+$page-height: calc(100vh - calc($header-height + $footer-height));

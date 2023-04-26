@@ -6,9 +6,10 @@ $footer-color: var(--footer-color);
 .container {
   display: flex;
   align-items: center;
-  padding: 0 32px;
+  padding: 32px;
+  min-height: $footer-height;
+  max-height: $footer-height;
   width: 100%;
-  height: $footer-height;
   background: $footer-background;
   color: $footer-color;
 }

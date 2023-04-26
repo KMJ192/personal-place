@@ -1,4 +1,7 @@
-import type { ReactNode } from 'react';
+import { forwardRef } from 'react';
+import type { ReactNode, ElementType, Ref } from 'react';
+
+import type { OVERRIDABLE_PROPS } from '@lib/ui/types/utilityTypes';
 
 import Header from '@lib/ui/Header';
 import Footer from '@lib/ui/Footer';
@@ -10,14 +13,22 @@ import classNames from 'classnames/bind';
 import style from './PageTemplate.module.scss';
 const cx = classNames.bind(style);
 
-type Props = {
+type BaseProps = {
   children: ReactNode;
   contents?: Array<GNBItem>;
 };
 
-function PageTemplate({ children, contents }: Props) {
+const DEFAULT_COMPONENT_ELEMENT = 'div';
+
+type Props<T extends ElementType> = OVERRIDABLE_PROPS<T, BaseProps>;
+
+function PageTemplate<
+  T extends ElementType = typeof DEFAULT_COMPONENT_ELEMENT,
+>({ as, children, contents, className, ...props }: Props<T>) {
+  const Element = as ?? DEFAULT_COMPONENT_ELEMENT;
+
   return (
-    <div className={cx('template')}>
+    <Element className={cx('template')}>
       <Header.Container>
         <Header.LogoSection>Logo</Header.LogoSection>
         <Header.LeftSection>Left</Header.LeftSection>
@@ -33,8 +44,8 @@ function PageTemplate({ children, contents }: Props) {
           </Footer.Container>
         </div>
       </div>
-    </div>
+    </Element>
   );
 }
 
-export default PageTemplate;
+export default forwardRef(PageTemplate) as typeof PageTemplate;

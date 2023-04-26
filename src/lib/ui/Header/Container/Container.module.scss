@@ -6,8 +6,9 @@ $header-color: var(--header-color);
 .container {
   display: flex;
   align-items: center;
-  padding: 0 32px;
-  height: $header-height;
+  padding: 32px;
+  min-height: $header-height;
+  max-height: $header-height;
   background: $header-background;
   color: $header-color;
 }
