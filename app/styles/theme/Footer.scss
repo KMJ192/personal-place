@@ -1,0 +1,6 @@
+@import '@lib/ui/styles/color.module.scss';
+
+@mixin Footer {
+  --footer-background: #{$primary500};
+  --footer-color: #{$primary000};
+}

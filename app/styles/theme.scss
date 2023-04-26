@@ -1,5 +1,9 @@
 @import './theme/GNB.scss';
+@import './theme/Header.scss';
+@import './theme/Footer.scss';
 
 body {
   @include GNB;
+  @include Header;
+  @include Footer;
 }

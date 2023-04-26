@@ -1,0 +1,6 @@
+@import '@lib/ui/styles/color.module.scss';
+
+@mixin Header {
+  --header-background: #{$primary500};
+  --header-color: #{$primary000};
+}

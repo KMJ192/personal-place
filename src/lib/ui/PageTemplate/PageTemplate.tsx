@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import Header from '@lib/ui/Header';
 import Footer from '@lib/ui/Footer';
 import GNB from '@lib/ui/GNB';
+
 import type { GNBItem } from '@lib/ui/GNB/types';
 
 import classNames from 'classnames/bind';
