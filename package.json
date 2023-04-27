@@ -17,19 +17,23 @@
     "build": "next build",
     "deploy": "next start",
     "build:lib": "rm -rf build && vite build && tsc -p tsconfig.build.json && tsc-alias",
-    "clear": "rm -rf .yarn* yarn.lock .pnp*"
+    "clear": "rm -rf .yarn* yarn.lock .pnp*",
+    "start:test": "nodemon --watch test-server/app.js"
   },
   "dependencies": {
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",
     "next": "^13.3.1",
+    "nodemon": "^2.0.22",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
     "sass": "^1.60.0",
+    "socket.io": "^4.6.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/express": "^4",
     "@types/lodash": "^4.14.192",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.33",
@@ -48,6 +52,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "express": "^4.18.2",
     "prettier": "^2.8.7",
     "tsc-alias": "^1.8.5",
     "typescript": "^5.0.3",
