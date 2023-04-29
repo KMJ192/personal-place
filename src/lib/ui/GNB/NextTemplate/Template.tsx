@@ -1,8 +1,3 @@
-'use client';
-
-import { useState } from 'react';
-import _ from 'lodash';
-
 import GNB from '../../GNB';
 import Child from './Child';
 
@@ -13,31 +8,43 @@ import style from './Template.module.scss';
 const cx = classNames.bind(style);
 
 type Props = {
-  contents?: Array<GNBItem>;
-};
-
-function Template({ contents }: Props) {
-  const [options, setOptions] = useState<{
+  options?: {
     show: Set<string | number>;
     selected: string | number;
-  }>({
+  };
+  contents?: Array<GNBItem>;
+  onClickItem?: (key: string | number) => void;
+};
+
+function Template({
+  options = {
     show: new Set(),
     selected: '',
-  });
+  },
+  contents = [],
+  onClickItem = () => {},
+}: Props) {
+  // const [options, setOptions] = useState<{
+  //   show: Set<string | number>;
+  //   selected: string | number;
+  // }>({
+  //   show: new Set(),
+  //   selected: '',
+  // });
 
-  const onClickItem = (key: string | number) => {
-    setOptions((options) => {
-      const newOptions = _.cloneDeep(options);
-      if (newOptions.show.has(key)) {
-        newOptions.show.delete(key);
-      } else {
-        newOptions.show.add(key);
-      }
-      newOptions.selected = key;
+  // const onClickItem = (key: string | number) => {
+  //   setOptions((options) => {
+  //     const newOptions = _.cloneDeep(options);
+  //     if (newOptions.show.has(key)) {
+  //       newOptions.show.delete(key);
+  //     } else {
+  //       newOptions.show.add(key);
+  //     }
+  //     newOptions.selected = key;
 
-      return newOptions;
-    });
-  };
+  //     return newOptions;
+  //   });
+  // };
 
   return (
     <GNB.Container className={cx('gnb-container')}>

@@ -1,8 +1,7 @@
 import React from 'react';
-import Template from '@common/Template/Template';
 
 function page() {
-  return <Template>page</Template>;
+  return <div>page</div>;
 }
 
 export default page;

@@ -1,9 +1,11 @@
 'use client';
 
 import { ReactNode, useRef } from 'react';
+import { RecoilRoot } from 'recoil';
 
 import type { GNBItem } from '@lib/ui/GNB/types';
 import PageTemplate from '@lib/ui/PageTemplate/PageTemplate';
+import useGNBSelect from '@src/lib/ui/GNB/hooks/useGNBSelect';
 
 import classNames from 'classnames/bind';
 import style from './style.module.scss';
@@ -99,12 +101,21 @@ function Template({ children }: Props) {
     },
   ]);
 
+  const { options, onClickItem } = useGNBSelect();
+
   return (
-    <main className={cx('main')}>
-      <PageTemplate contents={contents.current} className={cx('page-template')}>
-        <section className={cx('page')}>{children}</section>
-      </PageTemplate>
-    </main>
+    <RecoilRoot>
+      <main className={cx('main')}>
+        <PageTemplate
+          contents={contents.current}
+          options={options}
+          onClickItem={onClickItem}
+          className={cx('page-template')}
+        >
+          <section className={cx('page')}>{children}</section>
+        </PageTemplate>
+      </main>
+    </RecoilRoot>
   );
 }
 

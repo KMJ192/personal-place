@@ -1,11 +1,5 @@
-import Template from './components/common/Template/Template';
-
 function Home() {
-  return (
-    <Template>
-      <div>page</div>
-    </Template>
-  );
+  return <div>page</div>;
 }
 
 export default Home;

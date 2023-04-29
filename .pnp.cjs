@@ -56,6 +56,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:18.2.0"],\
             ["react-hook-form", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:7.43.9"],\
+            ["recoil", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:0.7.7"],\
             ["sass", "npm:1.62.1"],\
             ["socket.io-client", "npm:4.6.1"],\
             ["tsc-alias", "npm:1.8.6"],\
@@ -3591,6 +3592,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["hamt_plus", [\
+        ["npm:1.0.2", {\
+          "packageLocation": "./.yarn/cache/hamt_plus-npm-1.0.2-67a52ee1df-af26ea32db.zip/node_modules/hamt_plus/",\
+          "packageDependencies": [\
+            ["hamt_plus", "npm:1.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["has", [\
         ["npm:1.0.3", {\
           "packageLocation": "./.yarn/cache/has-npm-1.0.3-b7f00631c1-b9ad53d53b.zip/node_modules/has/",\
@@ -5029,6 +5039,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:18.2.0"],\
             ["react-hook-form", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:7.43.9"],\
+            ["recoil", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:0.7.7"],\
             ["sass", "npm:1.62.1"],\
             ["socket.io-client", "npm:4.6.1"],\
             ["tsc-alias", "npm:1.8.6"],\
@@ -5334,6 +5345,37 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["readdirp", "npm:3.6.0"],\
             ["picomatch", "npm:2.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["recoil", [\
+        ["npm:0.7.7", {\
+          "packageLocation": "./.yarn/cache/recoil-npm-0.7.7-4452f58b67-65edecbcb8.zip/node_modules/recoil/",\
+          "packageDependencies": [\
+            ["recoil", "npm:0.7.7"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:0.7.7", {\
+          "packageLocation": "./.yarn/__virtual__/recoil-virtual-20f76b27f8/0/cache/recoil-npm-0.7.7-4452f58b67-65edecbcb8.zip/node_modules/recoil/",\
+          "packageDependencies": [\
+            ["recoil", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:0.7.7"],\
+            ["@types/react", "npm:18.2.0"],\
+            ["@types/react-dom", "npm:18.2.1"],\
+            ["@types/react-native", null],\
+            ["hamt_plus", "npm:1.0.2"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:18.2.0"],\
+            ["react-native", null]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react-native",\
+            "@types/react",\
+            "react-dom",\
+            "react-native",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\

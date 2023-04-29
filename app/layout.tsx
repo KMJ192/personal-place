@@ -1,3 +1,4 @@
+import Template from '@common/Template/Template';
 import './styles/globals.css';
 import './styles/theme.scss';
 
@@ -17,7 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='ko'>
-      <body>{children}</body>
+      <body>
+        <Template>{children}</Template>
+      </body>
     </html>
   );
 }

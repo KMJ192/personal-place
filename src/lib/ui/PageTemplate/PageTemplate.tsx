@@ -15,7 +15,12 @@ const cx = classNames.bind(style);
 
 type BaseProps = {
   children: ReactNode;
+  options?: {
+    show: Set<string | number>;
+    selected: string | number;
+  };
   contents?: Array<GNBItem>;
+  onClickItem?: (key: string | number) => void;
 };
 
 const DEFAULT_COMPONENT_ELEMENT = 'div';
@@ -23,7 +28,15 @@ const DEFAULT_COMPONENT_ELEMENT = 'div';
 type Props<T extends ElementType> = OVERRIDABLE_PROPS<T, BaseProps>;
 
 function PageTemplate<T extends ElementType = typeof DEFAULT_COMPONENT_ELEMENT>(
-  { as, children, contents, className, ...props }: Props<T>,
+  {
+    as,
+    children,
+    options,
+    contents,
+    className,
+    onClickItem,
+    ...props
+  }: Props<T>,
   ref: Ref<any>,
 ) {
   const Element = as ?? DEFAULT_COMPONENT_ELEMENT;
@@ -35,7 +48,11 @@ function PageTemplate<T extends ElementType = typeof DEFAULT_COMPONENT_ELEMENT>(
         <Header.RightSection>Right</Header.RightSection>
       </Header.Container>
       <div className={cx('nav-page')}>
-        <GNB.NextTemplate contents={contents} />
+        <GNB.NextTemplate
+          contents={contents}
+          options={options}
+          onClickItem={onClickItem}
+        />
         <div className={cx('contents')}>
           <div className={cx('page')}>{children}</div>
           <Footer.Container>

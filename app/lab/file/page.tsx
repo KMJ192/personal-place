@@ -1,32 +1,30 @@
 'use client';
 
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useRef } from 'react';
 import { Socket, io } from 'socket.io-client';
 import axios from 'axios';
-
-import Template from '@common/Template/Template';
 
 import classNames from 'classnames/bind';
 import style from './style.module.scss';
 const cx = classNames.bind(style);
 
-const socket = io('http://localhost:8081/events');
-const chunkSize = 10 * 1024; // 10kb
+// const socket = io('http://localhost:8081/events');
+// const chunkSize = 10 * 1024; // 10kb
 
 function File() {
-  const [message, setMessage] = useState('');
-  const [imgFile, setImgFile] = useState<string | ArrayBuffer | null>('');
   const fileRef = useRef<HTMLInputElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   const handleFile = (e: ChangeEvent) => {
     e.stopPropagation();
     const fileList = fileRef.current?.files;
-    if (fileList && fileList[0]) {
+    const img = imgRef.current;
+    if (img && fileList && fileList[0]) {
       const file = fileList[0];
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
       fileReader.onloadend = () => {
-        setImgFile(fileReader.result);
+        img.src = String(fileReader.result);
       };
     }
   };
@@ -34,7 +32,8 @@ function File() {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const fileList = fileRef.current?.files;
-    if (fileList) {
+    const img = imgRef.current;
+    if (img && fileList) {
       const form = new FormData();
       Object.keys(fileList).forEach((key) => {
         const k = Number(key);
@@ -52,10 +51,8 @@ function File() {
             'Content-Type': 'multipart/form-data',
           },
           data: form,
-          // withCredentials: false,
         });
-        console.log(res);
-        setImgFile('');
+        img.src = '';
       } catch (e) {
         console.log(e);
       }
@@ -84,7 +81,7 @@ function File() {
   // }, []);
 
   return (
-    <Template>
+    <>
       <form
         className={cx('form')}
         encType='multipart/form-data'
@@ -104,18 +101,18 @@ function File() {
         ></input>
         <button type='submit'>전송</button>
       </form>
-      <img
-        src={typeof imgFile === 'string' ? imgFile : ''}
-        alt='thumbnail'
-      ></img>
+      <img src='' alt='thumbnail' ref={imgRef}></img>
       <button
         onClick={() => {
-          setImgFile('');
+          const img = imgRef.current;
+          if (img) {
+            img.src = '';
+          }
         }}
       >
         제거
       </button>
-    </Template>
+    </>
   );
 }
 
