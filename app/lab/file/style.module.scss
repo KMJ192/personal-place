@@ -1,0 +1,25 @@
+@import '@lib/ui/styles/color.module.scss';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  width: 100px;
+
+  .file-uploader {
+    display: none;
+  }
+
+  .file-uploader-view {
+    background: $primary500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+      background: $primary400;
+    }
+  }
+}

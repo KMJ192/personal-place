@@ -86,6 +86,17 @@ function Template({ children }: Props) {
         },
       ],
     },
+    {
+      key: 'Lab',
+      contents: 'Lab',
+      child: [
+        {
+          key: 'File',
+          contents: 'File',
+          path: '/lab/file',
+        },
+      ],
+    },
   ]);
 
   return (
