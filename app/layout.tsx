@@ -1,6 +1,7 @@
-import Template from '@common/Template/Template';
 import './styles/globals.css';
 import './styles/theme.scss';
+
+import Template from '@common/Template/Template';
 
 // import classNames from 'classnames/bind';
 // import style from './layout.module.scss';

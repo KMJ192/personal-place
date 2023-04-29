@@ -59,14 +59,17 @@ function Template({ children }: Props) {
             {
               key: 'useIntersectionObserver',
               contents: 'useIntersectionObserver',
+              path: '/utils/use-intersection-observer',
             },
             {
               key: 'useDebounce',
               contents: 'useDebounce',
+              path: '/utils/use-debounce',
             },
             {
               key: 'useResizeObserver',
               contents: 'useResizeObserver',
+              path: '/utils/use-resize-observer',
             },
             {
               key: 'useDetectElement',
