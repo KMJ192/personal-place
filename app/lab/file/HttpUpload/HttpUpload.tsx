@@ -22,11 +22,19 @@ function HttpUpload() {
       const file = fileList[0];
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
+      fileReader.onloadstart = () => {
+        // socket을 연다
+        console.log('start');
+      }
       fileReader.onloadend = () => {
-        img.src = String(fileReader.result);
+        // img.src = String(fileReader.result);
+        // socket을 닫는다
+        console.log(fileReader.result, 'end');
       };
       fileReader.onprogress = (e: ProgressEvent<FileReader>) => {
+        // 서버로 전송한다.
         console.log(e);
+        // console.log((e.loaded * 100) / e.total);
       };
     }
   };
