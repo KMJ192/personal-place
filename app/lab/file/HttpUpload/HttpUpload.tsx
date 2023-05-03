@@ -1,13 +1,11 @@
 'use client';
 
-import React, { ChangeEvent, useEffect, useRef } from 'react';
+import React, { ChangeEvent, useRef } from 'react';
 import axios from 'axios';
 
 import classNames from 'classnames/bind';
 import style from './HttpUpload.module.scss';
 const cx = classNames.bind(style);
-
-const chunkSize = 10 * 1024; // 10kb
 
 function HttpUpload() {
   const fileRef = useRef<HTMLInputElement>(null);
@@ -27,14 +25,12 @@ function HttpUpload() {
         console.log('start');
       }
       fileReader.onloadend = () => {
-        // img.src = String(fileReader.result);
+        img.src = String(fileReader.result);
         // socket을 닫는다
-        console.log(fileReader.result, 'end');
       };
       fileReader.onprogress = (e: ProgressEvent<FileReader>) => {
         // 서버로 전송한다.
-        console.log(e);
-        // console.log((e.loaded * 100) / e.total);
+        console.log((e.loaded * 100) / e.total);
       };
     }
   };
@@ -50,43 +46,25 @@ function HttpUpload() {
         const k = Number(key);
         if (!Number.isNaN(k)) {
           const file = fileList[k];
-          // const len = Math.ceil(file.size / chunkSize);
-          // const chunk = [];
-          // for (let i = 0; i < len; i++) {
-          //   chunk.push(file.slice(chunkSize * i, chunkSize * (i + 1)));
-          // }
           form.append('file', file);
         }
       });
 
       try {
-        // const res = await axios({
-        //   method: 'POST',
-        //   url: 'http://localhost:8080/api/file/chunk-upload',
-        //   headers: {
-        //     'Content-Type': 'multipart/form-data',
-        //   },
-        //   data: form,
-        // });
+        const res = await axios({
+          method: 'POST',
+          url: 'http://localhost:8080/api/file/chunk-upload',
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          data: form,
+        });
         img.src = '';
       } catch (e) {
         console.log(e);
       }
     }
   };
-
-  // useEffect(() => {
-  //   const fileReader = new FileReader();
-  //   fileReader.onloadstart = () => {
-  //     console.log('loadstart');
-  //   };
-  //   fileReader.onprogress = () => {
-  //     console.log('onprogress');
-  //   };
-  //   fileReader.onloadend = () => {
-  //     console.log('end');
-  //   };
-  // }, []);
 
   return (
     <>

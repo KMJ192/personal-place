@@ -49,6 +49,7 @@ tsconfig.tsbuildinfo
 
 # wasm
 wasm-module/target
+wasm-module/pkg
 
 .yarn/*
 !.yarn/releases

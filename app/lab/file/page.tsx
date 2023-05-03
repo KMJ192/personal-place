@@ -1,6 +1,6 @@
 import React from 'react';
 
-import HttpUpload from './HttpUpload/HttpUpload';
+// import HttpUpload from './HttpUpload/HttpUpload';
 import SocketUpload from './SocketUpload/SocketUpload';
 
 // import classNames from 'classnames/bind';
@@ -10,8 +10,8 @@ import SocketUpload from './SocketUpload/SocketUpload';
 function File() {
   return (
     <>
-      <HttpUpload />
-      {/* <SocketUpload /> */}
+      {/* <HttpUpload /> */}
+      <SocketUpload />
     </>
   );
 }
