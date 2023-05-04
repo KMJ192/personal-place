@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { Socket, io } from 'socket.io-client';
 
@@ -13,15 +13,14 @@ const socket = io('http://localhost:8081/events', {
 });
 // const chunkSize = 10 * 1024; // 10kb
 const chunkSize = 100 * 1024 * 1024;
-const callback = (isEnd: DOMException | null, result: Uint8Array) => {
+const callback = (isEnd: DOMException | null, result: string | ArrayBuffer) => {
   if (isEnd === null) {
     console.log('result', result);
   }
-}
+};
 
 function SocketUpload() {
   const fileRef = useRef<HTMLInputElement>(null);
-  const imgRef = useRef<HTMLImageElement>(null);
 
   const onClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -36,60 +35,59 @@ function SocketUpload() {
     e.stopPropagation();
 
     const fileList = fileRef.current?.files;
-    const img = imgRef.current;
 
-    if (img && fileList && fileList[0]) {
+    if (fileList && fileList[0]) {
       const file: Blob = fileList[0];
       const fileReader = new FileReader();
       let offset = 0;
-      let fileSize = file.size;
+      const fileSize = file.size;
 
       // fileReader.readAsArrayBuffer(file);
       // fileReader.readAsDataURL(file);
 
-      const readSlice =(start: number, length: number) => {
-        let slice = file.slice(start, start + length);
+      const readSlice = (start: number, length: number) => {
+        const slice = file.slice(start, start + length);
         fileReader.readAsArrayBuffer(slice);
-      }
-
-      fileReader.onloadstart = () => {
-        // socket을 연다
-        console.log('start', offset);
-      }
-
-      fileReader.onprogress = (e: ProgressEvent<FileReader>) => {
-        // 서버로 전송한다.
-        console.log((e.loaded * 100) / e.total);
       };
+
+      // fileReader.onloadstart = () => {
+      //   // socket을 연다
+      //   console.log('start');
+      // };
+
+      // fileReader.onprogress = (e: ProgressEvent<FileReader>) => {
+      //   // 서버로 전송한다.
+      //   console.log((e.loaded * 100) / e.total);
+      // };
+
       fileReader.onload = (e: ProgressEvent<FileReader>) => {
         // console.log((e.loaded * 100) / e.total);
         if (fileReader.error) {
-          console.log(fileReader.error);
+          console.log('error', fileReader.error);
           return;
         }
 
-        if(fileReader.result) {
-          callback(null, new Uint8Array(fileReader.result));
+        if (fileReader.result) {
+          callback(null, fileReader.result);
         }
 
         if (offset < fileSize) {
           readSlice(offset, chunkSize);
-          console.log(offset);
           offset += chunkSize;
         }
-      }
+      };
 
-      readSlice(offset, chunkSize)
+      readSlice(offset, chunkSize);
 
       fileReader.onerror = () => {
-        console.log(fileReader.error); 
-      }
-
-      fileReader.onloadend = () => {
-        // img.src = String(fileReader.result);
-        // socket을 닫는다
-        console.log('end', offset, offset + chunkSize);
+        console.log('error', fileReader.error);
       };
+
+      // fileReader.onloadend = () => {
+      //   // img.src = String(fileReader.result);
+      //   // socket을 닫는다
+      //   console.log('end');
+      // };
     }
   };
 
