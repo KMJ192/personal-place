@@ -25,7 +25,7 @@ function SocketUpload() {
       console.log(chat);
     });
 
-    socket.disconnect();
+      socket.disconnect();
   };
 
   const handleFile = async (e: React.ChangeEvent) => {
