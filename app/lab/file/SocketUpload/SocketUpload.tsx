@@ -11,88 +11,108 @@ const cx = classNames.bind(style);
 function SocketUpload() {
   const fileRef = useRef<HTMLInputElement>(null);
 
-  const [file, setFile] = useState(null);
+  const [file, setFile] = useState<Blob | null>(null);
 
-  // const chunkSize = 10 * 1024; // 10kb
-  const chunkSize = 10 * 1024 * 1024;
+  // const chunkSize = 100 * 1024; // 100kb
+  const chunkSize = 100 * 1024 * 1024;
 
-  const onClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const socket = io('http://localhost:8081/events');
-
-    socket.connect();
-    socket.emit('echo', '안뇽', (chat: Socket) => {
-      console.log(chat);
-    });
-
-      socket.disconnect();
+  const handleFileSelect = (e: React.ChangeEvent) => {
+    e.stopPropagation();
+    const element = fileRef.current;
+    if (element) {
+      const fileList = element.files;
+      if (fileList && fileList[0]) {
+        const f = fileList[0];
+        setFile(f);
+        element.files = null;
+        element.value = '';
+      }
+    }
   };
 
-  const handleFile = async (e: React.ChangeEvent) => {
+  const handleFile = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    const fileList = fileRef.current?.files;
+    e.preventDefault();
 
-    const socket = io('http://localhost:8081/events', {
-      // autoConnect: false,
-    });
-
-    try {
-      if (fileList && fileList[0]) {
-        const file: Blob = fileList[0];
-        console.log('start');
-        socket.emit('upload-start', {
-          name: file.name,
-          size: file.size,
+    if (file) {
+      try {
+        const socket = io('ws://localhost:8081/file-upload', {
+          autoConnect: false,
         });
-        let offset = 0;
+        socket.connect();
+        socket.emit(
+          'upload-start',
+          {
+            name: file.name,
+            size: file.size,
+          },
+          (value: string) => {
+            console.log(value);
+          },
+        );
 
         const readSlice = (file: Blob, offset: number, length: number) => {
-          return new Promise((res, rej) => {
-            const reader = new FileReader();
-            const slice = file.slice(offset, offset + length);
+          return new Promise(
+            (
+              res: (result: string | ArrayBuffer | null) => void,
+              rej: (e: Error) => void,
+            ) => {
+              const reader = new FileReader();
+              const slice = file.slice(offset, offset + length);
 
-            reader.onload = (e: ProgressEvent<FileReader>) => {
-              if (e.target) {
-                res(e.target.result);
-              } else {
-                // rej('e.target is null');
-              }
-            };
+              reader.onload = (e: ProgressEvent<FileReader>) => {
+                if (e.target) {
+                  res(e.target.result);
+                } else {
+                  rej(new Error('not result'));
+                }
+              };
 
-            reader.readAsArrayBuffer(slice);
-          });
+              reader.readAsArrayBuffer(slice);
+            },
+          );
         };
 
         const uploadSlice = async (file: Blob, offset: number) => {
           const slice = await readSlice(file, offset, chunkSize);
-          console.log(slice);
-          socket.emit('upload-slice', {
-            slice,
-            offset,
-          });
+          socket.emit(
+            'upload-slice',
+            {
+              slice,
+              offset,
+            },
+            (offset: number) => {
+              console.log(offset);
+            },
+          );
         };
-        while (offset < file.size) {
+
+        for (let i = 0; i < file.size; i += chunkSize) {
           // eslint-disable-next-line no-await-in-loop
-          await uploadSlice(file, offset);
-          offset += chunkSize;
+          await uploadSlice(file, i);
         }
 
-        console.log('end');
-        socket.emit('upload-end');
+        socket.emit('upload-end', 'end', (value: string) => {
+          console.log(value);
+          socket.disconnect();
+        });
+
+        setFile(null);
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
     }
   };
 
-  // useEffect(() => {
-  //   // socket.on('message', () => {});
-  //   socket.connect();
-  //   return () => {
-  //     // socket.off('message', () => {});
-  //     socket.disconnect();
-  //   };
-  // }, []);
+  const echo = () => {
+    const socket = io('ws://localhost:8081/file-upload', {
+      autoConnect: false,
+    });
+    socket.connect();
+    socket.emit('echo', '안뇽', (echo: string) => {
+      socket.disconnect();
+    });
+  };
 
   return (
     <>
@@ -106,12 +126,15 @@ function SocketUpload() {
           id='file'
           name='file'
           formEncType='multipart/form-data'
-          onChange={handleFile}
+          onChange={handleFileSelect}
           ref={fileRef}
         ></input>
-        <button type='submit'>전송</button>
+        <div>{file?.name ?? ''}</div>
+        <button type='submit' onClick={handleFile}>
+          전송
+        </button>
       </form>
-      <button onClick={onClick}>Echo</button>
+      <button onClick={echo}>Echo</button>
     </>
   );
 }

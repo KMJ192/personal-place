@@ -9,23 +9,21 @@ const cx = classNames.bind(style);
 
 function HttpUpload() {
   const fileRef = useRef<HTMLInputElement>(null);
-  const imgRef = useRef<HTMLImageElement>(null);
 
   const handleFile = (e: ChangeEvent) => {
     e.stopPropagation();
 
     const fileList = fileRef.current?.files;
-    const img = imgRef.current;
-    if (img && fileList && fileList[0]) {
+    if (fileList && fileList[0]) {
       const file = fileList[0];
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
       fileReader.onloadstart = () => {
         // socket을 연다
         console.log('start');
-      }
+      };
       fileReader.onloadend = () => {
-        img.src = String(fileReader.result);
+        // img.src = String(fileReader.result);
         // socket을 닫는다
       };
       fileReader.onprogress = (e: ProgressEvent<FileReader>) => {
@@ -38,8 +36,7 @@ function HttpUpload() {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const fileList = fileRef.current?.files;
-    const img = imgRef.current;
-    if (img && fileList) {
+    if (fileList) {
       const form = new FormData();
 
       Object.keys(fileList).forEach((key) => {
@@ -59,7 +56,7 @@ function HttpUpload() {
           },
           data: form,
         });
-        img.src = '';
+        // img.src = '';
       } catch (e) {
         console.log(e);
       }
@@ -67,39 +64,26 @@ function HttpUpload() {
   };
 
   return (
-    <>
-      <form
-        className={cx('form')}
-        encType='multipart/form-data'
-        onSubmit={onSubmit}
-      >
-        <label htmlFor='file' className={cx('file-uploader-view')}>
-          파일 첨부
-        </label>
-        <input
-          className={cx('file-uploader')}
-          type='file'
-          name='file'
-          id='file'
-          multiple
-          formEncType='multipart/form-data'
-          onChange={handleFile}
-          ref={fileRef}
-        ></input>
-        <button type='submit'>전송</button>
-      </form>
-      <img src='' alt='thumbnail' ref={imgRef}></img>
-      <button
-        onClick={() => {
-          const img = imgRef.current;
-          if (img) {
-            img.src = '';
-          }
-        }}
-      >
-        제거
-      </button>
-    </>
+    <form
+      className={cx('form')}
+      encType='multipart/form-data'
+      onSubmit={onSubmit}
+    >
+      <label htmlFor='file' className={cx('file-uploader-view')}>
+        파일 첨부
+      </label>
+      <input
+        className={cx('file-uploader')}
+        type='file'
+        name='file'
+        id='file'
+        multiple
+        formEncType='multipart/form-data'
+        onChange={handleFile}
+        ref={fileRef}
+      ></input>
+      <button type='submit'>전송</button>
+    </form>
   );
 }
 
