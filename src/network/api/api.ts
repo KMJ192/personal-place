@@ -24,6 +24,7 @@ const METHOD = { GET, POST, DELETE, PUT };
 const apiObj = axios.create({
   baseURL: API_URL,
   timeout: 15000,
+  withCredentials: true,
 });
 
 const HTTP_REQUEST = async ({
@@ -62,12 +63,10 @@ const api: ApiObj = {
 
 const QUERY = (params: AxiosRequestConfig) => (): Promise<HttpResponse> => {
   let headers: RawAxiosResponseHeaders = params.headers ?? DEFAULT_HEADER;
-  const token = document.cookie;
 
   if (!headers.token) {
     headers = {
       ...headers,
-      token,
     };
   }
 
@@ -81,12 +80,10 @@ const MUT =
   <T>(params: AxiosRequestConfig) =>
   (data: T) => {
     let headers: RawAxiosRequestHeaders = params.headers ?? DEFAULT_HEADER;
-    const token = document.cookie;
 
     if (!headers.token) {
       headers = {
         ...headers,
-        token,
       };
     }
 

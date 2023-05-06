@@ -29,9 +29,8 @@ function Render() {
   };
 
   const onSubmit = async (data: User) => {
-    // console.log(data);
     const response = await mutateAsync(data);
-    console.log(response.result);
+    console.log(response);
     reset({
       email: '',
       password: '',
