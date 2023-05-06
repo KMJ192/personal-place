@@ -100,6 +100,11 @@ function Template({ children }: Props) {
           contents: 'File',
           path: '/lab/file',
         },
+        {
+          key: 'JWT',
+          contents: 'JWT',
+          path: '/lab/jwt',
+        },
       ],
     },
   ]);
