@@ -3,24 +3,23 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
+import useLogin from './hooks/useLogin';
+import type { User } from './hooks/useLogin';
+
 import classNames from 'classnames/bind';
 import style from './style.module.scss';
 const cx = classNames.bind(style);
 
-type LoginData = {
-  email: string;
-  password: string;
-};
-
 function Render() {
-  const { register, formState, reset, handleSubmit, setFocus } =
-    useForm<LoginData>({
-      mode: 'onSubmit',
-      defaultValues: {
-        email: '',
-        password: '',
-      },
-    });
+  const { register, formState, reset, handleSubmit, setFocus } = useForm<User>({
+    mode: 'onSubmit',
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const { mutateAsync } = useLogin();
 
   const onInit = () => {
     reset({
@@ -29,8 +28,14 @@ function Render() {
     });
   };
 
-  const onSubmit = (data: LoginData) => {
-    console.log(data);
+  const onSubmit = async (data: User) => {
+    // console.log(data);
+    const response = await mutateAsync(data);
+    console.log(response.result);
+    reset({
+      email: '',
+      password: '',
+    });
   };
 
   useEffect(() => {
@@ -47,6 +52,7 @@ function Render() {
         <input
           type='text'
           placeholder='email'
+          autoComplete='off'
           {...register('email', {
             pattern: {
               value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
@@ -59,13 +65,14 @@ function Render() {
         <input
           type='password'
           placeholder='placeholder'
+          autoComplete='off'
           {...register('password', {
-            pattern: {
-              value:
-                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~`!@#$%\\^&*()\-_+={}[\]|;:"<>,./?])(?!.*\s).{8,}$/,
-              message:
-                '비밀번호는 영어 대문자, 소문자, 특수문자가 모두 포함되어야 합니다.',
-            },
+            // pattern: {
+            //   value:
+            //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[~`!@#$%\\^&*()\-_+={}[\]|;:"<>,./?])(?!.*\s).{8,}$/,
+            //   message:
+            //     '비밀번호는 영어 대문자, 소문자, 특수문자가 모두 포함되어야 합니다.',
+            // },
           })}
         ></input>
       </div>

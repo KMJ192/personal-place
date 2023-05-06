@@ -4,6 +4,7 @@ type HttpResponse = {
   status: number;
   code: string;
   message: string;
+  result: any;
 };
 
 type ApiObj = {

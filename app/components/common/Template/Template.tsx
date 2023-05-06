@@ -2,6 +2,7 @@
 
 import { ReactNode, useRef } from 'react';
 import { RecoilRoot } from 'recoil';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import type { GNBItem } from '@lib/ui/GNB/types';
 import PageTemplate from '@lib/ui/PageTemplate/PageTemplate';
@@ -14,6 +15,18 @@ const cx = classNames.bind(style);
 type Props = {
   children: ReactNode;
 };
+
+const queryClient: QueryClient = new QueryClient();
+queryClient.setDefaultOptions({
+  queries: {
+    cacheTime: 0,
+    staleTime: 0,
+    refetchOnWindowFocus: false,
+  },
+  mutations: {
+    retry: 0,
+  },
+});
 
 function Template({ children }: Props) {
   const contents = useRef<Array<GNBItem>>([
@@ -112,18 +125,20 @@ function Template({ children }: Props) {
   const { options, onClickItem } = useGNBSelect();
 
   return (
-    <RecoilRoot>
-      <main className={cx('main')}>
-        <PageTemplate
-          contents={contents.current}
-          options={options}
-          onClickItem={onClickItem}
-          className={cx('page-template')}
-        >
-          <section className={cx('page')}>{children}</section>
-        </PageTemplate>
-      </main>
-    </RecoilRoot>
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <main className={cx('main')}>
+          <PageTemplate
+            contents={contents.current}
+            options={options}
+            onClickItem={onClickItem}
+            className={cx('page-template')}
+          >
+            <section className={cx('page')}>{children}</section>
+          </PageTemplate>
+        </main>
+      </RecoilRoot>
+    </QueryClientProvider>
   );
 }
 
