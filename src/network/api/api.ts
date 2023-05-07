@@ -40,19 +40,28 @@ const HTTP_REQUEST = async ({
     headers,
     params,
     data,
-  }).then((res) => {
-    const {
-      data: { code, message, result },
-      status,
-    } = res;
+  })
+    .then((res) => {
+      const {
+        data: { code, message, result },
+        status,
+      } = res;
 
-    return {
-      status,
-      code: code ?? '',
-      message: message ?? '',
-      result: result ?? '',
-    };
-  });
+      return {
+        status,
+        code: code ?? '',
+        message: message ?? '',
+        result: result ?? '',
+      };
+    })
+    .catch((e: Error) => {
+      return {
+        status: 500,
+        code: 'E-000',
+        message: e.message,
+        result: 'Error',
+      };
+    });
 
   return response;
 };
