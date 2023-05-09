@@ -5,7 +5,7 @@ import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import type { GNBItem } from '@lib/ui/GNB/types';
-import PageTemplate from '@lib/ui/PageTemplate/PageTemplate';
+import PageTemplate from '@src/lib/ui/template/PageTemplate/PageTemplate';
 import useGNBSelect from '@src/lib/ui/GNB/hooks/useGNBSelect';
 
 import classNames from 'classnames/bind';
