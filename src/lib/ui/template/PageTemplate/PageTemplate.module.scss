@@ -7,6 +7,7 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  @include scrollbar();
   .nav-page {
     display: flex;
     width: 100%;
@@ -17,7 +18,6 @@
         height: $page-height;
         width: $page-width;
         overflow: scroll;
-        @include scrollbar();
       }
     }
   }

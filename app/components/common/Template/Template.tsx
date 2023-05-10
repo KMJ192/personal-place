@@ -31,6 +31,28 @@ queryClient.setDefaultOptions({
 function Template({ children }: Props) {
   const contents = useRef<Array<GNBItem>>([
     {
+      key: 'playground',
+      contents: 'Playground',
+      child: [
+        {
+          key: 'atom',
+          contents: 'Atom',
+          child: [
+            {
+              key: 'button',
+              contents: 'Button',
+              path: '/playground/atom/button',
+            },
+            {
+              key: 'hamburger',
+              contents: 'HamburgerMenu',
+              path: '/playground/atom/hamburger-menu',
+            },
+          ],
+        },
+      ],
+    },
+    {
       key: 'components',
       contents: 'Components',
       child: [
