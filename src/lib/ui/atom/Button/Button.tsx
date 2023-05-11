@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { OVERRIDABLE_PROPS } from '../../types/utilityTypes';
+import type { OVERRIDABLE_PROPS } from '@lib/ui/types/types';
 
 import classNames from 'classnames/bind';
 import style from './Button.module.scss';

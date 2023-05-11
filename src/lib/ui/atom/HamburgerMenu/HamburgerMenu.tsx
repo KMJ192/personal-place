@@ -1,26 +1,39 @@
 import React from 'react';
 
+import type { OVERRIDABLE_PROPS } from '@lib/ui/types/types';
+
 import classNames from 'classnames/bind';
 import style from './HamburgerMenu.module.scss';
 const cx = classNames.bind(style);
 
-type Props = {
+type BaseProps = {
   type?: 'type-1' | 'type-2' | 'type-3' | 'type-4';
   active?: boolean;
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
-function HamburgerMenu({ type = 'type-1', active = false, onClick }: Props) {
+const DEFAULT_COMPONENT_ELEMENT = 'div';
+
+type Props<T extends React.ElementType> = OVERRIDABLE_PROPS<T, BaseProps>;
+
+function HamburgerMenu<
+  T extends React.ElementType = typeof DEFAULT_COMPONENT_ELEMENT,
+>(
+  { type = 'type-1', active = false, as, ...props }: Props<T>,
+  ref: React.Ref<any>,
+) {
+  const Element = as ?? DEFAULT_COMPONENT_ELEMENT;
+
   return (
-    <div
-      className={cx('hamburger', type, active && 'active')}
-      onClick={onClick}
+    <Element
+      ref={ref}
+      className={cx('hamburger', active && 'active', type)}
+      {...props}
     >
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </Element>
   );
 }
 
-export default HamburgerMenu;
+export default React.forwardRef(HamburgerMenu) as typeof HamburgerMenu;

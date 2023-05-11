@@ -1,7 +1,7 @@
 import { forwardRef, isValidElement } from 'react';
 import type { ReactNode, ElementType, Ref } from 'react';
 
-import type { OVERRIDABLE_PROPS } from '@lib/ui/types/utilityTypes';
+import type { OVERRIDABLE_PROPS } from '@src/lib/ui/types/types';
 
 import classNames from 'classnames/bind';
 import style from './Menu.module.scss';
