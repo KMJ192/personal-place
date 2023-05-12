@@ -6,7 +6,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import type { GNBItem } from '@lib/ui/GNB/types';
 import PageTemplate from '@src/lib/ui/template/PageTemplate/PageTemplate';
-import useGNBSelect from '@src/lib/ui/GNB/hooks/useGNBSelect';
+
+import HamburgerMenu from '@src/lib/ui/atom/HamburgerMenu/HamburgerMenu';
+import { useGNBHooks } from '@src/lib/ui/GNB';
 
 import classNames from 'classnames/bind';
 import style from './style.module.scss';
@@ -144,7 +146,13 @@ function Template({ children }: Props) {
     },
   ]);
 
-  const { options, onClickItem } = useGNBSelect();
+  const { options, isFoldGNB, setOptions, setIsFoldGNB } =
+    useGNBHooks.useGNBStates();
+  const { onClickItem, onClickFoldMenu } = useGNBHooks.useGNBActions({
+    isFoldGNB,
+    setOptions,
+    setIsFoldGNB,
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -153,8 +161,16 @@ function Template({ children }: Props) {
           <PageTemplate
             contents={contents.current}
             options={options}
-            onClickItem={onClickItem}
+            isFoldGNB={isFoldGNB}
+            headerLeft={
+              <HamburgerMenu
+                active={isFoldGNB}
+                onClick={onClickFoldMenu}
+                type='type-4'
+              />
+            }
             className={cx('page-template')}
+            onClickItem={onClickItem}
           >
             <section className={cx('page')}>{children}</section>
           </PageTemplate>

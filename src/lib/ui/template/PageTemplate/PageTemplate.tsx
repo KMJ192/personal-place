@@ -19,8 +19,14 @@ type BaseProps = {
     show: Set<string | number>;
     selected: string | number;
   };
+  headerLeft?: ReactNode;
+  headerRight?: ReactNode;
+  footerLeft?: ReactNode;
+  footerRight?: ReactNode;
   contents?: Array<GNBItem>;
+  isFoldGNB?: boolean;
   onClickItem?: (key: string | number) => void;
+  onClickFoldMenu?: () => void;
 };
 
 const DEFAULT_COMPONENT_ELEMENT = 'div';
@@ -32,8 +38,13 @@ function PageTemplate<T extends ElementType = typeof DEFAULT_COMPONENT_ELEMENT>(
     as,
     children,
     options,
+    headerLeft,
+    headerRight,
+    footerLeft,
+    footerRight,
     contents,
     className,
+    isFoldGNB,
     onClickItem,
     ...props
   }: Props<T>,
@@ -44,20 +55,21 @@ function PageTemplate<T extends ElementType = typeof DEFAULT_COMPONENT_ELEMENT>(
   return (
     <Element {...props} ref={ref} className={cx('template', className)}>
       <Header.Container>
-        <Header.LeftSection>Left</Header.LeftSection>
-        <Header.RightSection>Right</Header.RightSection>
+        <Header.LeftSection>{headerLeft}</Header.LeftSection>
+        <Header.RightSection>{headerRight}</Header.RightSection>
       </Header.Container>
       <div className={cx('nav-page')}>
         <GNB.NextTemplate
           contents={contents}
           options={options}
+          isFold={isFoldGNB}
           onClickItem={onClickItem}
         />
         <div className={cx('contents')}>
           <div className={cx('page')}>{children}</div>
           <Footer.Container>
-            <Footer.LeftSection>Left</Footer.LeftSection>
-            <Footer.RightSection>Right</Footer.RightSection>
+            <Footer.LeftSection>{footerLeft}</Footer.LeftSection>
+            <Footer.RightSection>{footerRight}</Footer.RightSection>
           </Footer.Container>
         </div>
       </div>

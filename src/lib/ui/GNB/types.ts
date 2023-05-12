@@ -11,4 +11,9 @@ type GNBItem = {
   path?: string;
 };
 
-export type { GNBItem };
+type GNBTemplateOptions = {
+  show: Set<string | number>;
+  selected: string | number;
+};
+
+export type { GNBItem, GNBTemplateOptions };

@@ -1,6 +1,6 @@
 @import '../GNB.module.scss';
 
-$gnb-background: var(--gnb-background);
+$gnb-background: var(--gnb-background, $primary400);
 
 .container {
   display: flex;
