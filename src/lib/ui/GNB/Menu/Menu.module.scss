@@ -1,8 +1,11 @@
 @import '../GNB.module.scss';
 
-$gnb-menu: var(--gnb-menu);
-$gnb-menu-select: var(--gnb-menu-select);
-$gnb-menu-select-box-shadow: var(--gnb-menu-select-box-shadow);
+$gnb-menu: var(--gnb-menu, $primary100);
+$gnb-menu-select: var(--gnb-menu-select, $primary600);
+$gnb-menu-select-box-shadow: var(
+  --gnb-menu-select-box-shadow,
+  0px 3px 6px rgba(45, 118, 248, 0.1)
+);
 
 .menu {
   height: 60px;

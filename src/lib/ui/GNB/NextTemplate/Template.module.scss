@@ -1,6 +1,11 @@
-@import '../../styles/scrollbar.scss';
+@import '@lib/ui/styles/scrollbar.scss';
+@import '@lib/ui/styles/size.module.scss';
 
 .gnb-container {
+  transition: transform 0.5s;
+  &.fold {
+    transform: translateX(-#{$gnb-width-default});
+  }
   .menu-group {
     overflow-y: scroll;
     @include scrollbar();

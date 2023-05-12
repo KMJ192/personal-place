@@ -1,15 +1,10 @@
-import { useState } from 'react';
 import _ from 'lodash';
 
-function useGNBSelect() {
-  const [options, setOptions] = useState<{
-    show: Set<string | number>;
-    selected: string | number;
-  }>({
-    show: new Set(),
-    selected: '',
-  });
+import { GNBStates } from './useGNBStates';
 
+type Props = Pick<GNBStates, 'setOptions' | 'isFoldGNB' | 'setIsFoldGNB'>;
+
+function useGNBActions({ setOptions, isFoldGNB, setIsFoldGNB }: Props) {
   const onClickItem = (key: string | number) => {
     setOptions((options) => {
       const newOptions = _.cloneDeep(options);
@@ -24,10 +19,14 @@ function useGNBSelect() {
     });
   };
 
+  const onClickFoldMenu = () => {
+    setIsFoldGNB(!isFoldGNB);
+  };
+
   return {
-    options,
     onClickItem,
+    onClickFoldMenu,
   };
 }
 
-export default useGNBSelect;
+export default useGNBActions;

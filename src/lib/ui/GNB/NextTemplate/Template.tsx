@@ -12,6 +12,7 @@ type Props = {
     show: Set<string | number>;
     selected: string | number;
   };
+  isFold?: boolean;
   contents?: Array<GNBItem>;
   onClickItem?: (key: string | number) => void;
 };
@@ -21,33 +22,12 @@ function Template({
     show: new Set(),
     selected: '',
   },
+  isFold = false,
   contents = [],
   onClickItem = () => {},
 }: Props) {
-  // const [options, setOptions] = useState<{
-  //   show: Set<string | number>;
-  //   selected: string | number;
-  // }>({
-  //   show: new Set(),
-  //   selected: '',
-  // });
-
-  // const onClickItem = (key: string | number) => {
-  //   setOptions((options) => {
-  //     const newOptions = _.cloneDeep(options);
-  //     if (newOptions.show.has(key)) {
-  //       newOptions.show.delete(key);
-  //     } else {
-  //       newOptions.show.add(key);
-  //     }
-  //     newOptions.selected = key;
-
-  //     return newOptions;
-  //   });
-  // };
-
   return (
-    <GNB.Container className={cx('gnb-container')}>
+    <GNB.Container className={cx('gnb-container', isFold && 'fold')}>
       <GNB.MenuGroup show depth={0} className={cx('menu-group')}>
         {Array.isArray(contents) &&
           contents.length > 0 &&
