@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import type { ReactNode, ElementType, Ref } from 'react';
 
-import type { OVERRIDABLE_PROPS } from '@src/lib/ui/types/types';
+import type { OVER_RIDABLE_PROPS } from '@src/lib/ui/types/types';
 
 import Header from '@lib/ui/Header';
 import Footer from '@lib/ui/Footer';
@@ -25,7 +25,7 @@ type BaseProps = {
 
 const DEFAULT_COMPONENT_ELEMENT = 'div';
 
-type Props<T extends ElementType> = OVERRIDABLE_PROPS<T, BaseProps>;
+type Props<T extends ElementType> = OVER_RIDABLE_PROPS<T, BaseProps>;
 
 function PageTemplate<T extends ElementType = typeof DEFAULT_COMPONENT_ELEMENT>(
   {

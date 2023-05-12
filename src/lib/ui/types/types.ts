@@ -9,8 +9,8 @@ type COMBINE_ELEMENT_PROPS<T extends ElementType, K = unknown> = COMBINE<
 >;
 
 // 자동으로 as 타입 추가
-type OVERRIDABLE_PROPS<T extends ElementType, K = unknown> = {
+type OVER_RIDABLE_PROPS<T extends ElementType, K = unknown> = {
   as?: T;
 } & COMBINE_ELEMENT_PROPS<T, K>;
 
-export type { OVERRIDABLE_PROPS, COMBINE_ELEMENT_PROPS, COMBINE };
+export type { OVER_RIDABLE_PROPS, COMBINE_ELEMENT_PROPS, COMBINE };

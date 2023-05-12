@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import type { ReactNode, ElementType, Ref } from 'react';
 
-import type { OVERRIDABLE_PROPS } from '@src/lib/ui/types/types';
+import type { OVER_RIDABLE_PROPS } from '@src/lib/ui/types/types';
 
 import classNames from 'classnames/bind';
 import style from './Container.module.scss';
@@ -13,7 +13,7 @@ type BaseProps = {
 
 const DEFAULT_COMPONENT_ELEMENT = 'header';
 
-type Props<T extends ElementType> = OVERRIDABLE_PROPS<T, BaseProps>;
+type Props<T extends ElementType> = OVER_RIDABLE_PROPS<T, BaseProps>;
 
 function Container<T extends ElementType = typeof DEFAULT_COMPONENT_ELEMENT>(
   { children, as, className, ...props }: Props<T>,

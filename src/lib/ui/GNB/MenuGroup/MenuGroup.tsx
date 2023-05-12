@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import type { ReactNode, ElementType, Ref } from 'react';
 
-import type { OVERRIDABLE_PROPS } from '@src/lib/ui/types/types';
+import type { OVER_RIDABLE_PROPS } from '@src/lib/ui/types/types';
 
 import classNames from 'classnames/bind';
 import style from './MenuGroup.module.scss';
@@ -15,7 +15,7 @@ type BaseProps = {
 
 const DEFAULT_COMPONENT_ELEMENT = 'div';
 
-type Props<T extends ElementType> = OVERRIDABLE_PROPS<T, BaseProps>;
+type Props<T extends ElementType> = OVER_RIDABLE_PROPS<T, BaseProps>;
 
 function MenuGroup<T extends ElementType = typeof DEFAULT_COMPONENT_ELEMENT>(
   {

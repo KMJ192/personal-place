@@ -1,6 +1,6 @@
 import React from 'react';
 
-import type { OVERRIDABLE_PROPS } from '@lib/ui/types/types';
+import type { OVER_RIDABLE_PROPS } from '@lib/ui/types/types';
 
 import classNames from 'classnames/bind';
 import style from './Button.module.scss';
@@ -12,7 +12,7 @@ type BaseProps = {
 
 const DEFAULT_COMPONENT_ELEMENT = 'button';
 
-type Props<T extends React.ElementType> = OVERRIDABLE_PROPS<T, BaseProps>;
+type Props<T extends React.ElementType> = OVER_RIDABLE_PROPS<T, BaseProps>;
 
 function Button<T extends React.ElementType = typeof DEFAULT_COMPONENT_ELEMENT>(
   { children, as, className, ...props }: Props<T>,
