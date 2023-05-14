@@ -4,11 +4,11 @@ import { ReactNode, useRef } from 'react';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import type { GNBItem } from '@lib/ui/GNB/types';
 import PageTemplate from '@src/lib/ui/template/PageTemplate/PageTemplate';
 
-import HamburgerMenu from '@src/lib/ui/atom/HamburgerMenu/HamburgerMenu';
-import { useGNBHooks } from '@src/lib/ui/GNB';
+import HamburgerMenu from '@src/lib/ui/atoms/HamburgerMenu/HamburgerMenu';
+import type { GNBItem } from '@lib/ui/molecules/GNB/types';
+import { useGNBHooks } from '@src/lib/ui/molecules/GNB';
 
 import classNames from 'classnames/bind';
 import style from './style.module.scss';
@@ -161,7 +161,6 @@ function Template({ children }: Props) {
           <PageTemplate
             contents={contents.current}
             options={options}
-            isFoldGNB={isFoldGNB}
             headerLeft={
               <HamburgerMenu
                 active={isFoldGNB}

@@ -8,8 +8,8 @@ import Template from '@common/Template/Template';
 // const cx = classNames.bind(style);
 
 export const metadata = {
-  title: 'play ground',
-  description: '아무거나 다 넣는 곳',
+  title: 'My repository',
+  description: 'React Components, module, function 등 저장',
 };
 
 export default function RootLayout({

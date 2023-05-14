@@ -1,4 +1,4 @@
-import Button from '@src/lib/ui/atom/Button/Button';
+import Button from '@src/lib/ui/atoms/Button/Button';
 
 function Page() {
   return (

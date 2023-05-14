@@ -3,11 +3,11 @@ import type { ReactNode, ElementType, Ref } from 'react';
 
 import type { OVER_RIDABLE_PROPS } from '@src/lib/ui/types/types';
 
-import Header from '@lib/ui/Header';
-import Footer from '@lib/ui/Footer';
-import GNB from '@lib/ui/GNB';
+import Header from '@lib/ui/molecules/Header';
+import Footer from '@lib/ui/molecules/Footer';
+import GNB from '@lib/ui/molecules/GNB';
 
-import type { GNBItem } from '@lib/ui/GNB/types';
+import type { GNBItem } from '@lib/ui/molecules/GNB/types';
 
 import classNames from 'classnames/bind';
 import style from './PageTemplate.module.scss';
@@ -24,7 +24,6 @@ type BaseProps = {
   footerLeft?: ReactNode;
   footerRight?: ReactNode;
   contents?: Array<GNBItem>;
-  isFoldGNB?: boolean;
   onClickItem?: (key: string | number) => void;
   onClickFoldMenu?: () => void;
 };
@@ -44,7 +43,6 @@ function PageTemplate<T extends ElementType = typeof DEFAULT_COMPONENT_ELEMENT>(
     footerRight,
     contents,
     className,
-    isFoldGNB,
     onClickItem,
     ...props
   }: Props<T>,
@@ -59,18 +57,21 @@ function PageTemplate<T extends ElementType = typeof DEFAULT_COMPONENT_ELEMENT>(
         <Header.RightSection>{headerRight}</Header.RightSection>
       </Header.Container>
       <div className={cx('nav-page')}>
-        <GNB.NextTemplate
-          contents={contents}
-          options={options}
-          isFold={isFoldGNB}
-          onClickItem={onClickItem}
-        />
+        <div className={cx('gnb')}>
+          <GNB.NextTemplate
+            contents={contents}
+            options={options}
+            onClickItem={onClickItem}
+          />
+        </div>
         <div className={cx('contents')}>
           <div className={cx('page')}>{children}</div>
-          <Footer.Container>
-            <Footer.LeftSection>{footerLeft}</Footer.LeftSection>
-            <Footer.RightSection>{footerRight}</Footer.RightSection>
-          </Footer.Container>
+          <div className={cx('footer')}>
+            <Footer.Container>
+              <Footer.LeftSection>{footerLeft}</Footer.LeftSection>
+              <Footer.RightSection>{footerRight}</Footer.RightSection>
+            </Footer.Container>
+          </div>
         </div>
       </div>
     </Element>

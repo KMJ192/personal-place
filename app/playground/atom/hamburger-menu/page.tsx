@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import HamburgerMenu from '@lib/ui/atom/HamburgerMenu/HamburgerMenu';
+import HamburgerMenu from '@src/lib/ui/atoms/HamburgerMenu/HamburgerMenu';
 
 function Page() {
   const [active, setActive] = useState(false);

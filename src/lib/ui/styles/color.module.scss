@@ -40,3 +40,45 @@ $gnb-color: $primary400;
 
 $white: #ffffff;
 $black: #000000;
+
+:export {
+  primary000: $primary000;
+  primary100: $primary100;
+  primary200: $primary200;
+  primary300: $primary300;
+  primary400: $primary400;
+  primary500: $primary500;
+  primary600: $primary600;
+  primary700: $primary700;
+  blue000: $blue000;
+  blue100: $blue100;
+  blue200: $blue200;
+  blue300: $blue300;
+  blue400: $blue400;
+  blue500: $blue500;
+  blue600: $blue600;
+  blue700: $blue700;
+  green000: $green000;
+  green100: $green100;
+  green200: $green200;
+  green300: $green300;
+  green400: $green400;
+  green500: $green500;
+  green600: $green600;
+  green700: $green700;
+  red000: $red000;
+  red100: $red100;
+  red200: $red200;
+  red300: $red300;
+  red400: $red400;
+  red500: $red500;
+  red600: $red600;
+  red700: $red700;
+
+  headerColor: $header-color;
+  footerColor: $footer-color;
+  gnbColor: $gnb-color;
+
+  white: $white;
+  black: $black;
+}
