@@ -1,7 +1,8 @@
 import React from 'react';
+import Render from './Render';
 
 function page() {
-  return <div>page</div>;
+  return <Render />;
 }
 
 export default page;

@@ -142,6 +142,11 @@ function Template({ children }: Props) {
           contents: 'JWT',
           path: '/lab/jwt',
         },
+        {
+          key: 'Tab',
+          contents: 'Tab',
+          path: '/lab/tab',
+        },
       ],
     },
   ]);
