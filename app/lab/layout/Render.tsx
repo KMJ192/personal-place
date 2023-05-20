@@ -3,7 +3,7 @@
 import React from 'react';
 
 function Render() {
-  return <div>Render</div>;
+  return <div></div>;
 }
 
 export default Render;
