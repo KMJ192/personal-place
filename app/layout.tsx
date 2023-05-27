@@ -1,5 +1,4 @@
 import './styles/globals.css';
-import './styles/theme.scss';
 
 import Template from '@common/Template/Template';
 
@@ -9,7 +8,7 @@ import Template from '@common/Template/Template';
 
 export const metadata = {
   title: 'My repository',
-  description: 'React Components, module, function 등 저장',
+  description: '',
 };
 
 export default function RootLayout({

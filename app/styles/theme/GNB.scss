@@ -1,8 +1,0 @@
-@import '@lib/ui/styles/color.module.scss';
-
-@mixin GNB {
-  --gnb-background: #{$primary400};
-  --gnb-menu: #{$primary100};
-  --gnb-menu-select: #{$primary600};
-  --gnb-menu-select-box-shadow: 0px 3px 6px rgba(45, 118, 248, 0.1);
-}
