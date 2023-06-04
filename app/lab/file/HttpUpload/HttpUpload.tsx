@@ -50,7 +50,7 @@ function HttpUpload() {
       try {
         const res = await axios({
           method: 'POST',
-          url: 'http://localhost:8080/api/file/chunk-upload',
+          url: 'http://localhost:8080/api/file/upload',
           headers: {
             'Content-Type': 'multipart/form-data',
           },

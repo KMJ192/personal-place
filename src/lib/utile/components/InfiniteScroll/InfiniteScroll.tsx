@@ -27,7 +27,7 @@ const InfiniteScroll = forwardRef<HTMLDivElement, Props>(
       <div
         className={className}
         style={{
-          overflowY: 'scroll',
+          overflowY: 'auto',
         }}
         ref={ref}
       >

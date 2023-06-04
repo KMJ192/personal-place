@@ -10,8 +10,8 @@ import SocketUpload from './SocketUpload/SocketUpload';
 function File() {
   return (
     <>
-      {/* <HttpUpload /> */}
-      <SocketUpload />
+      <HttpUpload />
+      {/* <SocketUpload /> */}
     </>
   );
 }
