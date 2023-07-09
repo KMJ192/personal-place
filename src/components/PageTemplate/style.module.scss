@@ -1,0 +1,38 @@
+@import '@app/styles/color/color.module.scss';
+
+.page-template {
+  --header-height: 64px;
+  --footer-height: 64px;
+  $header-height: var(--header-height);
+  $footer-height: var(--footer-height);
+  $sideNav-width: 164px;
+  height: 100%;
+  width: 100%;
+  .gnb {
+    position: fixed;
+    z-index: 1;
+    width: $sideNav-width;
+  }
+  .header {
+    position: fixed;
+    margin-left: $sideNav-width;
+    padding: 0 16px;
+  }
+  .contents {
+    display: grid;
+    grid-template-rows: 1fr 72px;
+    margin-left: $sideNav-width;
+    margin-top: $header-height;
+    width: 100%;
+    .page {
+      background: $dark-background;
+      padding: 16px;
+    }
+    .footer {
+      padding: 0 16px;
+    }
+  }
+}
+
+// @media screen and (max-width: 700px) {
+// }

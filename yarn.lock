@@ -1101,6 +1101,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"any-react-ui@npm:^0.0.28":
+  version: 0.0.28
+  resolution: "any-react-ui@npm:0.0.28"
+  dependencies:
+    lodash: ^4.17.21
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  checksum: 5141dbe13b789da5fa34f4f73726355da35b79e4c9b97a0ce86c8627aada76bf83cad79b89877d55195eded71902df98f4353d19c2ec55bab0a1ddd8c06e2fb8
+  languageName: node
+  linkType: hard
+
 "anymatch@npm:~3.1.2":
   version: 3.1.3
   resolution: "anymatch@npm:3.1.3"
@@ -4308,6 +4319,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.57.1
     "@typescript-eslint/parser": ^5.57.1
     "@vitejs/plugin-react": ^4.0.0
+    any-react-ui: ^0.0.28
     axios: ^1.4.0
     classnames: ^2.3.2
     eslint: ^8.37.0
@@ -4506,7 +4518,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:18.2.0":
+"react-dom@npm:18.2.0, react-dom@npm:^18.2.0":
   version: 18.2.0
   resolution: "react-dom@npm:18.2.0"
   dependencies:
@@ -4565,7 +4577,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.2.0":
+"react@npm:18.2.0, react@npm:^18.2.0":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
   dependencies:

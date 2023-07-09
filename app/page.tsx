@@ -1,7 +1,5 @@
-import CareerDescription from './CareerDescription/CareerDescription';
-
 function Home() {
-  return <CareerDescription />;
+  return <div></div>;
 }
 
 export default Home;

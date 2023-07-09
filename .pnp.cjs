@@ -38,6 +38,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:5.59.2"],\
             ["@typescript-eslint/parser", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:5.59.2"],\
             ["@vitejs/plugin-react", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:4.0.0"],\
+            ["any-react-ui", "npm:0.0.28"],\
             ["axios", "npm:1.4.0"],\
             ["classnames", "npm:2.3.2"],\
             ["eslint", "npm:8.40.0"],\
@@ -1500,6 +1501,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["ansi-styles", "npm:4.3.0"],\
             ["color-convert", "npm:2.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["any-react-ui", [\
+        ["npm:0.0.28", {\
+          "packageLocation": "./.yarn/cache/any-react-ui-npm-0.0.28-482f675ce9-5141dbe13b.zip/node_modules/any-react-ui/",\
+          "packageDependencies": [\
+            ["any-react-ui", "npm:0.0.28"],\
+            ["lodash", "npm:4.17.21"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:482f675ce9419f695dcb63c1a22e18c0c7b247045e1941ba1dfabecd9ec803df3abcd60cba209670094c385d2d3f79c09af2a0fdfd1dbf3aca02cd1ed2bc37c0#npm:18.2.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5261,6 +5274,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typescript-eslint/eslint-plugin", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:5.59.2"],\
             ["@typescript-eslint/parser", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:5.59.2"],\
             ["@vitejs/plugin-react", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:4.0.0"],\
+            ["any-react-ui", "npm:0.0.28"],\
             ["axios", "npm:1.4.0"],\
             ["classnames", "npm:2.3.2"],\
             ["eslint", "npm:8.40.0"],\
@@ -5518,6 +5532,21 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["react-dom", "virtual:0393767ec61386396449bd53ae22b529378d95741e28aa58f5d4af76a0eb2959f677e2a6efe03ec195d4585ff7ded572542b543e2ffb94ce59ee987297fc3b69#npm:18.2.0"],\
             ["@types/react", "npm:18.2.5"],\
+            ["loose-envify", "npm:1.4.0"],\
+            ["react", "npm:18.2.0"],\
+            ["scheduler", "npm:0.23.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }],\
+        ["virtual:482f675ce9419f695dcb63c1a22e18c0c7b247045e1941ba1dfabecd9ec803df3abcd60cba209670094c385d2d3f79c09af2a0fdfd1dbf3aca02cd1ed2bc37c0#npm:18.2.0", {\
+          "packageLocation": "./.yarn/__virtual__/react-dom-virtual-6bac11cbd2/0/cache/react-dom-npm-18.2.0-dd675bca1c-7d323310be.zip/node_modules/react-dom/",\
+          "packageDependencies": [\
+            ["react-dom", "virtual:482f675ce9419f695dcb63c1a22e18c0c7b247045e1941ba1dfabecd9ec803df3abcd60cba209670094c385d2d3f79c09af2a0fdfd1dbf3aca02cd1ed2bc37c0#npm:18.2.0"],\
+            ["@types/react", null],\
             ["loose-envify", "npm:1.4.0"],\
             ["react", "npm:18.2.0"],\
             ["scheduler", "npm:0.23.0"]\
