@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { Flex, Footer, Header, SideNavTemplate } from 'any-react-ui';
+import {
+  Flex,
+  Footer,
+  Header,
+  SideNavTemplate,
+  useValueUIState,
+} from 'any-react-ui';
 import type { SideNavItem } from 'any-react-ui';
 
 import classNames from 'classnames/bind';
@@ -12,6 +18,8 @@ type Props = {
 };
 
 function PageTemplate({ children }: Props) {
+  const { theme } = useValueUIState();
+
   const navItem = React.useRef<Array<SideNavItem>>([
     {
       key: 'nav1',
@@ -66,7 +74,7 @@ function PageTemplate({ children }: Props) {
   ]);
 
   return (
-    <Flex as='main' className={cx('page-template')}>
+    <Flex as='main' className={cx('page-template', theme)}>
       <SideNavTemplate className={cx('gnb')} navItem={navItem.current} />
       <Header className={cx('header')}>header</Header>
       <div className={cx('contents')}>

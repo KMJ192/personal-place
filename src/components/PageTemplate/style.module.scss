@@ -1,6 +1,8 @@
 @import '@app/styles/color/color.module.scss';
+@import '@app/styles/theme/theme.scss';
 
 .page-template {
+  @include theme;
   --header-height: 64px;
   --footer-height: 64px;
   $header-height: var(--header-height);

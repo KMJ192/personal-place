@@ -1,0 +1,9 @@
+@import './sideNav.scss';
+
+@mixin theme {
+  // &.light {
+  // }
+  &.dark {
+    @include sideNav-dark;
+  }
+}

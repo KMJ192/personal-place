@@ -26,41 +26,32 @@ queryClient.setDefaultOptions({
 });
 
 function Template({ children }: Props) {
-  const [t, setT] = useState('');
-  const [ui, setUI] = useUIState();
-  const { theme } = ui;
+  // const [t, setT] = useState('');
+  // const [ui, setUI] = useUIState();
+  // const { theme } = ui;
 
-  useIsomorphicLayoutEffect(() => {
-    if (!theme) {
-      setUI({
-        theme: 'light',
-      });
-      window.localStorage.setItem('theme', 'light');
-    }
-  }, [theme]);
+  // useIsomorphicLayoutEffect(() => {
+  //   if (!theme) {
+  //     setUI({
+  //       theme: 'dark',
+  //     });
+  //     window.localStorage.setItem('theme', 'dark');
+  //   }
+  // }, [theme]);
 
-  useIsomorphicLayoutEffect(() => {
-    setT(window.localStorage.getItem('theme') ?? 'light');
-  }, []);
+  // useIsomorphicLayoutEffect(() => {
+  //   setT(window.localStorage.getItem('theme') ?? 'dark');
+  // }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
         <UIProvider
           value={{
-            theme: t,
+            theme: 'dark',
           }}
         >
-          <PageTemplate>
-            <div
-              style={{
-                height: '1000px',
-                width: '3000px',
-              }}
-            >
-              page123978123978129871239871239871238971239801237891297123981298072309178230789718923721930871239821379821379812379817239087123987123891237908213798213798
-            </div>
-          </PageTemplate>
+          <PageTemplate>{children}</PageTemplate>
         </UIProvider>
       </RecoilRoot>
     </QueryClientProvider>
