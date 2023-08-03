@@ -1,0 +1,21 @@
+@import '../color/color.module.scss';
+
+@mixin footer-light {
+  --footer-background: linear-gradient(
+    165deg,
+    #{$light-primary200},
+    #{$light-background}
+  );
+
+  --footer-text: #{$light-primary900};
+}
+
+@mixin footer-dark {
+  --footer-background: linear-gradient(
+    165deg,
+    #{$dark-background},
+    #{$dark-primary100}
+  );
+
+  --footer-text: #{$dark-primary900};
+}

@@ -1,14 +1,37 @@
+@import '../color/color.module.scss';
+
+@mixin sideNav-light {
+  --side-nav-background: linear-gradient(
+    #{$light-primary200},
+    #{$light-primary000}
+  );
+
+  --sideNav-box-shadow: 0px 3px 6px rgba(64, 64, 64, 0.3);
+  --sideNav-menu-background-selected: #{$light-primary000};
+  --sideNav-menu-background-disabled: #{$light-primary300};
+
+  --sideNav-menu-text: #{$light-primary900};
+  --sideNav-menu-text-selected: #{$light-primary900};
+  --sideNav-menu-text-hover: #{$light-blue700};
+  --sideNav-menu-text-disabled: #{$light-primary500};
+
+  --sideNav-menu-box-shadow-selected: 0px 3px 6px rgba(64, 64, 64, 0.1);
+}
+
 @mixin sideNav-dark {
-  // --side-nav-background: red;
+  --side-nav-background: linear-gradient(
+    #{$dark-primary100},
+    #{$dark-primary000}
+  );
 
-  // --sideNav-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.7);
-  // --sideNav-menu-background-selected: #{$dark-primary100};
-  // --sideNav-menu-background-disabled: #{$dark-primary300};
+  --sideNav-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.7);
+  --sideNav-menu-background-selected: #{$dark-primary100};
+  --sideNav-menu-background-disabled: #{$dark-primary300};
 
-  // --sideNav-menu-text: #{$dark-primary900};
-  // --sideNav-menu-text-selected: #{$dark-primary800};
-  // --sideNav-menu-text-hover: #{$dark-blue500};
-  // --sideNav-menu-text-disabled: #{$dark-primary500};
+  --sideNav-menu-text: #{$dark-primary900};
+  --sideNav-menu-text-selected: #{$dark-primary800};
+  --sideNav-menu-text-hover: #{$dark-blue500};
+  --sideNav-menu-text-disabled: #{$dark-primary500};
 
-  // --sideNav-menu-box-shadow-selected: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  --sideNav-menu-box-shadow-selected: 0px 3px 6px rgba(0, 0, 0, 0.2);
 }

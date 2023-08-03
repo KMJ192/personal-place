@@ -1,0 +1,21 @@
+@import '../color/color.module.scss';
+
+@mixin header-light {
+  --header-background: linear-gradient(
+    165deg,
+    #{$light-primary100},
+    #{$light-primary700}
+  );
+
+  --header-text: #{$light-primary900};
+}
+
+@mixin header-dark {
+  --header-background: linear-gradient(
+    165deg,
+    #{$dark-primary100},
+    #{$dark-primary000}
+  );
+
+  --header-text: #{$dark-primary900};
+}

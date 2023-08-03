@@ -1,9 +1,20 @@
 @import './sideNav.scss';
+@import './header.scss';
+@import './footer.scss';
 
 @mixin theme {
-  // &.light {
-  // }
+  &.light {
+    @include header-light;
+    @include sideNav-light;
+    @include footer-light;
+    background: $light-background;
+    color: $light-text;
+  }
   &.dark {
+    @include header-dark;
     @include sideNav-dark;
+    @include footer-dark;
+    background: $dark-background;
+    color: $dark-text;
   }
 }
