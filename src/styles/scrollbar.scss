@@ -1,0 +1,25 @@
+@import '@styles/color.module';
+
+@mixin scrollbar(
+  $width: 16px,
+  $height: 16px,
+  $color: $light-primary300,
+  $hoverColor: $light-primary400
+) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $height;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $color;
+    background-clip: content-box;
+    border: 4px solid transparent;
+    border-radius: 16px;
+    &:hover {
+      background-color: $hoverColor;
+    }
+  }
+  &::-webkit-scrollbar-corner {
+    display: none;
+  }
+}

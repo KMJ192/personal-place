@@ -3,10 +3,9 @@
 import { ReactNode } from 'react';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import PageTemplate from '@src/components/templates/PageTemplate/PageTemplate';
 
-import { UIProvider } from 'any-react-ui';
-
-import PageTemplate from '@src/components/PageTemplate/PageTemplate';
+// import PageTemplate from '@src/components/PageTemplate/PageTemplate';
 
 type Props = {
   children: ReactNode;
@@ -25,33 +24,10 @@ queryClient.setDefaultOptions({
 });
 
 function Template({ children }: Props) {
-  // const [t, setT] = useState('');
-  // const [ui, setUI] = useUIState();
-  // const { theme } = ui;
-
-  // useIsomorphicLayoutEffect(() => {
-  //   if (!theme) {
-  //     setUI({
-  //       theme: 'dark',
-  //     });
-  //     window.localStorage.setItem('theme', 'dark');
-  //   }
-  // }, [theme]);
-
-  // useIsomorphicLayoutEffect(() => {
-  //   setT(window.localStorage.getItem('theme') ?? 'dark');
-  // }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
-        <UIProvider
-          value={{
-            theme: 'dark',
-          }}
-        >
-          <PageTemplate>{children}</PageTemplate>
-        </UIProvider>
+        <PageTemplate>{children}</PageTemplate>
       </RecoilRoot>
     </QueryClientProvider>
   );

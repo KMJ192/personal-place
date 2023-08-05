@@ -1,0 +1,60 @@
+@import './variable/variable.module.scss';
+
+$header-height: 64px;
+$footer-height: 72px;
+$sideNav-width: 164px;
+
+// @mixin hide-gnb {
+//   &.hide-gnb {
+//     .gnb {
+//       transform: translate(-$sideNav-width);
+//     }
+//     .header {
+//       margin-left: 0;
+//     }
+//     .contents {
+//       margin-left: 0;
+//     }
+//   }
+// }
+
+@mixin flex {
+  display: flex;
+}
+
+.page-template {
+  // @include hide-gnb;
+  @include flex;
+  --header-min-height: #{$header-height};
+  --header-max-height: #{$header-height};
+  --footer-min-height: #{$footer-height};
+  --footer-max-height: #{$footer-height};
+  height: 100%;
+  width: 100%;
+  .gnb {
+    position: fixed;
+    z-index: 1;
+    width: $sideNav-width;
+    transition: transform 0.5s ease;
+  }
+  .header {
+    position: fixed;
+    margin-left: $sideNav-width;
+    padding: 0 16px;
+    transition: margin-left 0.5s ease;
+  }
+  .contents {
+    display: grid;
+    grid-template-rows: 1fr 72px;
+    margin-left: $sideNav-width;
+    margin-top: $header-height;
+    width: 100%;
+    transition: margin-left 0.5s ease;
+    .page {
+      padding: 16px;
+    }
+    .footer {
+      padding: 0 16px;
+    }
+  }
+}

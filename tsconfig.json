@@ -32,6 +32,9 @@
       "@components/*": [
         "src/lib/components/*"
       ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
       "@common/*": [
         "app/components/common/*"
       ]

@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.32.0",
-    "any-react-ui": "^0.0.28",
+    "any-react-ui": "^0.0.41",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",
@@ -63,10 +63,10 @@
     "vite": "^4.2.1",
     "vite-plugin-wasm-pack": "^0.1.12"
   },
-  "packageManager": "yarn@3.5.0",
   "dependenciesMeta": {
     "next@13.3.1": {
       "unplugged": true
     }
-  }
+  },
+  "packageManager": "yarn@3.6.1"
 }
